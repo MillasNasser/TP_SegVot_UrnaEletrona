@@ -5,10 +5,18 @@
  */
 package tp.seguraça;
 
+import java.util.Vector;
+
 /**
  *
  * @author rafael
  */
 public class Urna {
+    private Vector<Cargo> cargos;
+    private BancoDeVotos banco;
     
+    public Urna(){
+        cargos = new Vector<Cargo>();
+        banco = new BancoDeVotos();
+    }
 }

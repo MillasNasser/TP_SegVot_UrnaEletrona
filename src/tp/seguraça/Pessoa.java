@@ -9,10 +9,7 @@ public class Pessoa {
 
     private String nome;
    
-}
-    
-
-    public Pessoa( String nome);
+    public Pessoa( String nome)
     {
       this.nome = nome;       
     }
@@ -26,4 +23,4 @@ public class Pessoa {
         this.nome = nome;
     }
 
- 
+}

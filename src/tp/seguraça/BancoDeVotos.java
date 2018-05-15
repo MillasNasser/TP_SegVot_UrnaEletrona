@@ -1,42 +1,21 @@
+package tp.seguraça;
 
-public class Candidato {
 
-    private String nome;
-    private int Numero;
-    private String Partido;
-  
+import java.util.Vector;
+import tp.seguraça.Candidato;
+import tp.seguraça.Pessoa;
 
-    public Candidato( String nome,int numero,String Partido)
-    {
-      this.nome = nome;       
-      this.numero = numero;
-      this.Partido = Partido;
+
+public class BancoDeVotos{    
+    private Vector<Candidato> candidatos;
+    
+    public BancoDeVotos(){
+        candidatos = new Vector<>();
     }
 
-    /* Get and Set */
-    public String getNome() {
-        return nome;
+    public Vector<Candidato> getCandidatos() {
+        return candidatos;
     }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-
-    public String getPartido() {
-        return Partido;
-    }
-
-    public void setPartido(String cPF) {
-        Partido = partido;
-    }
-
+}
 
 

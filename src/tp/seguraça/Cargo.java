@@ -5,10 +5,35 @@
  */
 package tp.seguraça;
 
+import java.util.List;
+import java.util.Vector;
+
 /**
  *
  * @author rafael
  */
 public class Cargo {
+    private Vector<Candidato> listaCandidato;
+    private String nome;
     
+    public Cargo(String nome){
+        this.nome = nome;
+        listaCandidato = new Vector<>();
+    }
+
+    public Vector<Candidato> getListaCandidato() {
+        return listaCandidato;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+    
+    public void adicionaCandidato(Candidato novoCandidato){
+        this.listaCandidato.add(novoCandidato);
+    }
+    
+    public void removeCandidato(Candidato novoCandidato){
+        this.listaCandidato.remove(novoCandidato);
+    }
 }
