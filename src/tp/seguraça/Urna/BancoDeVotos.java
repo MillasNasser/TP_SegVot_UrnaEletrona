@@ -1,9 +1,7 @@
-package tp.seguraça;
-
+package tp.seguraça.Urna;
 
 import java.util.Vector;
-import tp.seguraça.Candidato;
-import tp.seguraça.Pessoa;
+import tp.seguraça.Urna.Candidato;
 
 
 public class BancoDeVotos{    
@@ -16,6 +14,10 @@ public class BancoDeVotos{
     public Vector<Candidato> getCandidatos() {
         return candidatos;
     }
+	
+	public boolean addVoto(){
+		return true;
+	}
 }
 
 
