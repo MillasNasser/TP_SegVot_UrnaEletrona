@@ -37,4 +37,12 @@ public class Candidato extends Pessoa {
     public void setPartido(String partido) {
         Partido = partido;
     }
+
+	@Override
+	public String toString() {
+		String candidato = "";
+		candidato = getNome()+ " " + getNumero()+"\n";
+		candidato = Partido+"\n";
+		return candidato;
+	}
 }

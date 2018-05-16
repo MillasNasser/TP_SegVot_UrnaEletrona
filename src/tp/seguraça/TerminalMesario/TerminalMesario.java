@@ -15,7 +15,7 @@ public class TerminalMesario {
 	public Vector<Eleitor> eleitores;
 	
 	public TerminalMesario(){
-		eleitores = new Vector<Eleitor>();
+		eleitores = new Vector<>();
 	}
 	
 	public void adicionarEleitor(Eleitor novoEleitor){

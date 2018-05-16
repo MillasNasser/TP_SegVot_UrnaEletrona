@@ -13,7 +13,7 @@ import tp.seguraça.Pessoa;
  * @author millas
  */
 public class Eleitor extends  Pessoa{	
-	private String tituloEleitor;
+	private final String tituloEleitor;
 	
 	public Eleitor(String nome, String titulo){
 		super(nome);
