@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 package tp.seguraça;
 
 /*
@@ -20,3 +21,5 @@ public class Pessoa {
         return nome;
     }
 }
+=======
+>>>>>>> Stashed changes

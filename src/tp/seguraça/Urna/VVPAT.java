@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:src/tp/seguraça/Urna/VVPAT.java
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,3 +15,5 @@ public class VVPAT {
 		System.out.println(candidato.toString());
 	}
 }
+=======
+>>>>>>> Stashed changes:src/tp/seguraça/Cargo.java
