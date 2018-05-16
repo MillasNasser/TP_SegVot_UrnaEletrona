@@ -1,5 +1,5 @@
 
-package tp.segurança.BancoDeDadosMesário;
+package tp.seguraça.BancoDeDadosMesário;
 import java.sql.SQLException;
 import java.sql.Statement;
 

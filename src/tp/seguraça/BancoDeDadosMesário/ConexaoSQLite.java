@@ -1,5 +1,5 @@
 
-package tp.segurança.BancoDeDadosMesário;
+package tp.seguraça.BancoDeDadosMesário;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

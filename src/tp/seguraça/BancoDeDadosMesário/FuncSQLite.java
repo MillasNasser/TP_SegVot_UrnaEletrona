@@ -1,5 +1,6 @@
 
-package tp.segurança.BancoDeDadosMesário;
+package tp.seguraça.BancoDeDadosMesário;
+import tp.seguraça.TerminalMesario.Eleitor;
 
 
 public class FuncSQLite {
@@ -13,6 +14,7 @@ public class FuncSQLite {
     }
     
     public void insereEleitor(){
+        
         
     }
     
