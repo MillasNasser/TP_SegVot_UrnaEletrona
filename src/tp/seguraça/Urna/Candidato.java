@@ -12,9 +12,9 @@ import tp.seguraça.Pessoa;
  * @author rafael
  */
 public class Candidato extends Pessoa {
-
-    private int Numero;
-    private String Partido;
+    private final int Numero;
+    private final String Partido;
+	private long Votos;
 
     public Candidato(String nome, int numero, String Partido) {
         super(nome);
@@ -26,17 +26,18 @@ public class Candidato extends Pessoa {
         return Numero;
     }
 
-    public void setNumero(int numero) {
-        this.Numero = numero;
-    }
-
     public String getPartido() {
         return Partido;
     }
-
-    public void setPartido(String partido) {
-        Partido = partido;
-    }
+	
+	public void addVoto(){
+		this.Votos++;
+	}
+	
+	public long getVoto(){
+		long valor = Votos;
+		return valor;
+	}
 
 	@Override
 	public String toString() {

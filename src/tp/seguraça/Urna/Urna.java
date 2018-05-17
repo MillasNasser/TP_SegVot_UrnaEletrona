@@ -17,6 +17,6 @@ public class Urna {
     
     public Urna(){
         cargos = new Vector<Cargo>();
-        banco = new BancoDeVotos();
+        banco = BancoDeVotos.getInstance();
     }
 }
