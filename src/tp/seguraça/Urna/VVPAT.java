@@ -6,10 +6,20 @@
 package tp.seguraça.Urna;
 
 /**
- *
  * @author millas
+ * Singleton
  */
 public class VVPAT {
+	private final static VVPAT INSTANCE = new VVPAT();
+	
+	private VVPAT(){
+		
+	}
+
+	public static VVPAT getINSTANCE() {
+		return INSTANCE;
+	}
+	
 	public void printVoto(Candidato candidato){
 		System.out.println(candidato.toString());
 	}

@@ -11,38 +11,56 @@ import tp.seguraça.Pessoa;
  *
  * @author rafael
  */
-public class Candidato extends Pessoa {
+public class Candidato extends Pessoa{
+    private final long Numero;
+    private final String Partido;
+	private long Votos;
 
-    private int Numero;
-    private String Partido;
-
-    public Candidato(String nome, int numero, String Partido) {
+    public Candidato(String nome, long numero, String Partido) {
         super(nome);
         this.Numero = numero;
         this.Partido = Partido;
     }
-
-    public int getNumero() {
-        return Numero;
+	
+	private Candidato(String nome, long numero, String Partido, long Votos) {
+        super(nome);
+        this.Numero = numero;
+        this.Partido = Partido;
+		this.Votos = Votos;
     }
 
-    public void setNumero(int numero) {
-        this.Numero = numero;
+    public long getNumero() {
+        return Numero;
     }
 
     public String getPartido() {
         return Partido;
     }
-
-    public void setPartido(String partido) {
-        Partido = partido;
-    }
+	
+	public void addVoto(){
+		this.Votos++;
+	}
+	
+	public long getVoto(){
+		long valor = Votos;
+		return valor;
+	}
 
 	@Override
 	public String toString() {
-		String candidato = "";
+		String candidato;
 		candidato = getNome()+ " " + getNumero()+"\n";
 		candidato = Partido+"\n";
 		return candidato;
 	}
+	
+	/**
+	 *
+	 * @return nova instancia de Candidato
+	 * @throws CloneNotSupportedException
+	 */
+	@Override
+	public Candidato clone() throws CloneNotSupportedException{
+        return new Candidato(getNome(), getNumero(), getPartido(), getVoto());
+    }
 }
