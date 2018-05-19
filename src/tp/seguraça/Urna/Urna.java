@@ -10,13 +10,26 @@ import java.util.Vector;
 /**
  *
  * @author rafael
+ * Singleton
  */
 public class Urna {
-    private Vector<Cargo> cargos;
-    private BancoDeVotos banco;
+    private static Vector<Cargo> cargos;
+    private static BancoDeVotos banco;
+	private static VVPAT vvpat;
+	private static final Urna INSTANCE = new Urna();
     
-    public Urna(){
+    private Urna(){
         cargos = new Vector<Cargo>();
         banco = BancoDeVotos.getInstance();
+		vvpat = VVPAT.getINSTANCE();
     }
+	
+	public static Urna getInstance(){
+		return INSTANCE;
+	}
+	
+	public static boolean addCargos(Cargo novoCargo){
+		boolean add = cargos.add(novoCargo);
+		return add;
+	}
 }

@@ -7,6 +7,7 @@ package tp.seguraça.Urna;
 
 /**
  * @author millas
+ * Singleton
  */
 public class VVPAT {
 	private final static VVPAT INSTANCE = new VVPAT();

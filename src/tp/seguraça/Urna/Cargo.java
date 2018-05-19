@@ -8,7 +8,6 @@ package tp.seguraça.Urna;
 import java.util.Vector;
 
 /**
- *
  * @author rafael
  */
 public class Cargo {
@@ -19,20 +18,45 @@ public class Cargo {
         this.nome = nome;
         listaCandidato = new Vector<>();
     }
-
-    public Vector<Candidato> getListaCandidato() {
-        return listaCandidato;
-    }
+	
+	public Candidato getCandidato(long numeroEleitoral) throws CloneNotSupportedException{
+		Candidato retorno = null;
+		for(Candidato candt: listaCandidato){
+			if(candt.getNumero() == numeroEleitoral){
+				try{
+					retorno = candt.clone();
+				}catch(CloneNotSupportedException e){
+					System.out.println("Não foi possível clonar o Candidato ");
+					e.printStackTrace();
+				}
+			}
+		}
+		return retorno;
+	}
 
     public String getNome() {
         return nome;
     }
     
     public void adicionaCandidato(Candidato novoCandidato){
-        this.listaCandidato.add(novoCandidato);
+		boolean inserir = true;
+		for(Candidato candt: listaCandidato){
+			if(candt.getNumero() == novoCandidato.getNumero()){
+				inserir = false; break;
+			}
+		}
+		if(inserir){
+			this.listaCandidato.add(novoCandidato);
+			BancoDeVotos.addCandidato(novoCandidato);
+		}
     }
     
     public void removeCandidato(Candidato novoCandidato){
         this.listaCandidato.remove(novoCandidato);
     }
+	
+	public void remCandidatoDB(Candidato novoCandidato){
+		this.listaCandidato.remove(novoCandidato);
+		BancoDeVotos.removeCandidato(novoCandidato);
+	}
 }

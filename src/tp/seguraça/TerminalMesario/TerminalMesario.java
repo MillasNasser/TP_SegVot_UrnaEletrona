@@ -10,19 +10,40 @@ import java.util.Vector;
 /**
  *
  * @author millas
+ * Singleton
  */
 public class TerminalMesario {
-	public Vector<Eleitor> eleitores;
+	public final static TerminalMesario INSTANCE = new TerminalMesario();
+	private static Vector<Eleitor> eleitores;
 	
-	public TerminalMesario(){
+	private TerminalMesario(){
 		eleitores = new Vector<>();
 	}
 	
-	public void adicionarEleitor(Eleitor novoEleitor){
-		eleitores.add(novoEleitor);
+	public static TerminalMesario getInstance(){
+		return INSTANCE;
 	}
 	
-	public void verificarEleitor(Eleitor novoEleitor){
-		eleitores.add(novoEleitor);
+	public static boolean adicionarEleitor(Eleitor novoEleitor){
+		boolean inserir = true;
+		for(Eleitor eleitor: eleitores){
+			if(eleitor.getTituloEleitor().equals(novoEleitor.getTituloEleitor())){
+				inserir = false; break;
+			}
+		}
+		if(inserir == true){
+			eleitores.add(novoEleitor);
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean verificarEleitor(String titulo){
+		for(Eleitor eleitor: eleitores){
+			if(eleitor.getTituloEleitor().equals(titulo)){
+				return true;
+			}
+		}
+		return false;
 	}
 }
