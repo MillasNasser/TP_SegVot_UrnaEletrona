@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream:src/tp/seguraça/Urna/Candidato.java
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -48,5 +47,3 @@ public class Candidato extends Pessoa {
 		return candidato;
 	}
 }
-=======
->>>>>>> Stashed changes:src/tp/seguraça/Candidato.java
