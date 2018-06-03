@@ -5,7 +5,7 @@
  */
 package tp.seguraça.TerminalMesario;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,11 +13,11 @@ import java.util.Vector;
  * Singleton
  */
 public class TerminalMesario {
-	public final static TerminalMesario INSTANCE = new TerminalMesario();
-	private static Vector<Eleitor> eleitores;
+	private final static TerminalMesario INSTANCE = new TerminalMesario();
+	private static ArrayList<Eleitor> eleitores;
 	
 	private TerminalMesario(){
-		eleitores = new Vector<>();
+		eleitores = new ArrayList<>();
 	}
 	
 	public static TerminalMesario getInstance(){

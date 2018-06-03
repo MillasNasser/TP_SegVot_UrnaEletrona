@@ -5,31 +5,25 @@
  */
 package tp.seguraça.Urna;
 
-import java.util.Vector;
+import java.util.HashMap;
 
 /**
  * @author rafael
  */
 public class Cargo {
-    private Vector<Candidato> listaCandidato;
-    private String nome;
+    private final HashMap<Long, Candidato> listaCandidato;
+    private final String nome;
     
     public Cargo(String nome){
         this.nome = nome;
-        listaCandidato = new Vector<>();
+        listaCandidato = new HashMap<>();
     }
 	
-	public Candidato getCandidato(long numeroEleitoral) throws CloneNotSupportedException{
-		Candidato retorno = null;
-		for(Candidato candt: listaCandidato){
-			if(candt.getNumero() == numeroEleitoral){
-				try{
-					retorno = candt.clone();
-				}catch(CloneNotSupportedException e){
-					System.out.println("Não foi possível clonar o Candidato ");
-					e.printStackTrace();
-				}
-			}
+	public Candidato getCandidato(Long numeroEleitoral) throws CloneNotSupportedException{
+		Candidato retorno;
+		retorno = listaCandidato.getOrDefault(numeroEleitoral,null);
+		if(retorno != null){
+			retorno = retorno.clone();
 		}
 		return retorno;
 	}
@@ -39,24 +33,21 @@ public class Cargo {
     }
     
     public void adicionaCandidato(Candidato novoCandidato){
-		boolean inserir = true;
-		for(Candidato candt: listaCandidato){
-			if(candt.getNumero() == novoCandidato.getNumero()){
-				inserir = false; break;
-			}
-		}
+		boolean inserir;
+		inserir = listaCandidato.get(novoCandidato.getNumero()) == (null);
 		if(inserir){
-			this.listaCandidato.add(novoCandidato);
+			this.listaCandidato.put(novoCandidato.getNumero(),
+									novoCandidato);
 			BancoDeVotos.addCandidato(novoCandidato);
 		}
     }
     
-    public void removeCandidato(Candidato novoCandidato){
-        this.listaCandidato.remove(novoCandidato);
+    public void removeCandidato(Candidato candidato){
+        this.listaCandidato.remove(candidato.getNumero());
     }
 	
-	public void remCandidatoDB(Candidato novoCandidato){
-		this.listaCandidato.remove(novoCandidato);
-		BancoDeVotos.removeCandidato(novoCandidato);
+	public void remCandidatoDB(Candidato candidato){
+		this.listaCandidato.remove(candidato.getNumero());
+		BancoDeVotos.removeCandidato(candidato);
 	}
 }

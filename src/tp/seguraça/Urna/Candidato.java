@@ -5,6 +5,7 @@
  */
 package tp.seguraça.Urna;
 
+import java.util.Objects;
 import tp.seguraça.Pessoa;
 
 /**
@@ -50,7 +51,7 @@ public class Candidato extends Pessoa{
 	public String toString() {
 		String candidato;
 		candidato = getNome()+ " " + getNumero()+"\n";
-		candidato = Partido+"\n";
+		candidato += Partido+"\n";
 		return candidato;
 	}
 	
@@ -63,4 +64,25 @@ public class Candidato extends Pessoa{
 	public Candidato clone() throws CloneNotSupportedException{
         return new Candidato(getNome(), getNumero(), getPartido(), getVoto());
     }
+	
+	
+	@Override
+	public boolean equals(Object o){
+		Candidato candidato;
+		if(o instanceof Candidato){
+			candidato = (Candidato) o;
+		}else{
+			return false;
+		}
+		return this.toString().equals(candidato.toString());
+	}
+
+	@Override
+	public int hashCode() {
+		int hash = 3;
+		hash = 47 * hash + (int) (this.Numero ^ (this.Numero >>> 32));
+		hash = 47 * hash + Objects.hashCode(this.Partido);
+		hash = 47 * hash + (int) (this.Votos ^ (this.Votos >>> 32));
+		return hash;
+	}
 }
