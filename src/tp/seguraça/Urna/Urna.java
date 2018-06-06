@@ -7,6 +7,8 @@ package tp.seguraça.Urna;
 
 import Exceções.VotoInseridoException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,7 +74,7 @@ public class Urna {
 				if (candidato == null){
 					candidato = NULO;
 				}
-				System.out.print("Registrando o seu voto cuzao\n");
+				
 				boolean votou = BancoDeVotos.addVoto(candidato);
 				if(!votou){
 					throw new VotoInseridoException("Não foi registrado o voto do eleitor");
@@ -80,6 +82,25 @@ public class Urna {
 				return;
 			}
 		}
+	}
+	
+	public static void printVoto(Long numCand, Cargo atual){
+		Candidato c = NULO;
+		try {
+			c = atual.getCandidato(numCand);
+		} catch (CloneNotSupportedException ex) {
+			System.out.println("Olha a agua mineral");
+			Logger.getLogger(Urna.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		if(c == null){
+			if(numCand == -1){
+				c = BRANCO;
+			}else{
+				c = NULO;
+			}
+		}
+		
+		vvpat.printVoto(c);
 	}
 	
 	public static String geraBoletim(){

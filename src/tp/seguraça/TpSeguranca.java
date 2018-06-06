@@ -47,7 +47,7 @@ public class TpSeguranca {
 				while(true){
 					System.out.print("Digite o numero do candidato: ");
 					long numCand = Long.parseLong(scanner.readLine());
-					System.out.println(Urna.getCandidato(numCand));
+					Urna.printVoto(numCand, presidente);
 					System.out.print("Confirma o voto?[S/N]: ");
 					if(scanner.readLine().equals("S")){
 						Urna.addVoto(presidente, numCand);
