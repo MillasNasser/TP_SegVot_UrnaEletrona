@@ -42,10 +42,13 @@ public class InterfaceUrna extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelTitulo = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         labelCargo = new javax.swing.JLabel();
         labelCandidato = new javax.swing.JLabel();
         labelPartido = new javax.swing.JLabel();
+        panelTeclado = new javax.swing.JPanel();
+        buttonN0 = new javax.swing.JButton();
         buttonN1 = new javax.swing.JButton();
         buttonN2 = new javax.swing.JButton();
         buttonN3 = new javax.swing.JButton();
@@ -55,7 +58,6 @@ public class InterfaceUrna extends javax.swing.JFrame {
         buttonN7 = new javax.swing.JButton();
         buttonN8 = new javax.swing.JButton();
         buttonN9 = new javax.swing.JButton();
-        buttonN0 = new javax.swing.JButton();
         buttonBranco = new javax.swing.JButton();
         buttonCorrige = new javax.swing.JButton();
         buttonConfirma = new javax.swing.JButton();
@@ -64,24 +66,28 @@ public class InterfaceUrna extends javax.swing.JFrame {
         labelNCandidato2 = new javax.swing.JLabel();
         labelNCandidato1 = new javax.swing.JLabel();
         labelNCandidato0 = new javax.swing.JLabel();
-        labelTitulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(70, 70));
         setMinimumSize(new java.awt.Dimension(70, 70));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1366, 768));
         setResizable(false);
+
+        labelTitulo.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
+        labelTitulo.setForeground(new java.awt.Color(0, 153, 51));
+        labelTitulo.setText("Digite o número do seu candidato!");
 
         jLayeredPane1.setBackground(new java.awt.Color(255, 255, 255));
 
         labelCargo.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        labelCargo.setForeground(new java.awt.Color(0, 204, 51));
         labelCargo.setText("Cargo");
 
         labelCandidato.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        labelCandidato.setForeground(new java.awt.Color(0, 204, 51));
         labelCandidato.setText("Candidato");
 
         labelPartido.setFont(new java.awt.Font("Noto Sans", 1, 18)); // NOI18N
+        labelPartido.setForeground(new java.awt.Color(0, 204, 51));
         labelPartido.setText("Partido");
 
         jLayeredPane1.setLayer(labelCargo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -93,7 +99,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelCargo, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -111,6 +117,20 @@ public class InterfaceUrna extends javax.swing.JFrame {
                 .addComponent(labelPartido, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(63, Short.MAX_VALUE))
         );
+
+        panelTeclado.setBackground(new java.awt.Color(235, 235, 235));
+
+        buttonN0.setBackground(new java.awt.Color(204, 204, 204));
+        buttonN0.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buttonN0.setText("0");
+        buttonN0.setMaximumSize(null);
+        buttonN0.setMinimumSize(null);
+        buttonN0.setPreferredSize(null);
+        buttonN0.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonN0ActionPerformed(evt);
+            }
+        });
 
         buttonN1.setBackground(new java.awt.Color(204, 204, 204));
         buttonN1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -220,18 +240,6 @@ public class InterfaceUrna extends javax.swing.JFrame {
             }
         });
 
-        buttonN0.setBackground(new java.awt.Color(204, 204, 204));
-        buttonN0.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        buttonN0.setText("0");
-        buttonN0.setMaximumSize(null);
-        buttonN0.setMinimumSize(null);
-        buttonN0.setPreferredSize(null);
-        buttonN0.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonN0ActionPerformed(evt);
-            }
-        });
-
         buttonBranco.setBackground(new java.awt.Color(255, 255, 255));
         buttonBranco.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         buttonBranco.setText("Branco");
@@ -248,72 +256,72 @@ public class InterfaceUrna extends javax.swing.JFrame {
         buttonConfirma.setBackground(new java.awt.Color(0, 204, 51));
         buttonConfirma.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         buttonConfirma.setText("Confirma");
+        buttonConfirma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConfirmaActionPerformed(evt);
+            }
+        });
 
         labelNCandidato4.setBackground(new java.awt.Color(255, 255, 255));
-        labelNCandidato4.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        labelNCandidato4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelNCandidato4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNCandidato4.setToolTipText("");
-        labelNCandidato4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        labelNCandidato4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 102), 3, true));
 
         labelNCandidato3.setBackground(new java.awt.Color(255, 255, 255));
-        labelNCandidato3.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        labelNCandidato3.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelNCandidato3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNCandidato3.setToolTipText("");
-        labelNCandidato3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        labelNCandidato3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 102), 3, true));
 
         labelNCandidato2.setBackground(new java.awt.Color(255, 255, 255));
-        labelNCandidato2.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        labelNCandidato2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelNCandidato2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNCandidato2.setToolTipText("");
-        labelNCandidato2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        labelNCandidato2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 102), 3, true));
 
         labelNCandidato1.setBackground(new java.awt.Color(255, 255, 255));
-        labelNCandidato1.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        labelNCandidato1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelNCandidato1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNCandidato1.setToolTipText("");
-        labelNCandidato1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        labelNCandidato1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 102), 3, true));
 
         labelNCandidato0.setBackground(java.awt.Color.white);
-        labelNCandidato0.setFont(new java.awt.Font("Noto Sans", 0, 36)); // NOI18N
+        labelNCandidato0.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelNCandidato0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelNCandidato0.setToolTipText("");
-        labelNCandidato0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
+        labelNCandidato0.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 153, 102), 3, true));
         labelNCandidato0.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         labelNCandidato0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        labelTitulo.setFont(new java.awt.Font("Noto Sans", 1, 24)); // NOI18N
-        labelTitulo.setText("Digite o número do seu candidato!");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLayeredPane1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+        javax.swing.GroupLayout panelTecladoLayout = new javax.swing.GroupLayout(panelTeclado);
+        panelTeclado.setLayout(panelTecladoLayout);
+        panelTecladoLayout.setHorizontalGroup(
+            panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTecladoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTecladoLayout.createSequentialGroup()
+                        .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(buttonBranco, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(buttonCorrige, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN0, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN8, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                        .addGap(10, 10, 10)
+                        .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                             .addComponent(buttonConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(buttonN3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                    .addGroup(panelTecladoLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addComponent(labelNCandidato4, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelNCandidato3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,7 +331,53 @@ public class InterfaceUrna extends javax.swing.JFrame {
                         .addComponent(labelNCandidato1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(labelNCandidato0, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        panelTecladoLayout.setVerticalGroup(
+            panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelTecladoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelNCandidato4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato0, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonN1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonN4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN6, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonN7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(buttonN8, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(10, 10, 10)
+                .addComponent(buttonN0, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addGroup(panelTecladoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonBranco, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonCorrige, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLayeredPane1)
+                .addGap(50, 50, 50)
+                .addComponent(panelTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(56, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTitulo)
@@ -332,41 +386,13 @@ public class InterfaceUrna extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNCandidato4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNCandidato0, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNCandidato3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNCandidato2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelNCandidato1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonN1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(buttonN2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(buttonN3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonN4, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(buttonN5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(buttonN6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(buttonN7, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                            .addComponent(buttonN9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(buttonN8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addComponent(buttonN0, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(buttonBranco, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonCorrige, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonConfirma, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                    .addComponent(panelTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -415,6 +441,10 @@ public class InterfaceUrna extends javax.swing.JFrame {
     private void buttonCorrigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCorrigeActionPerformed
       corrige();
     }//GEN-LAST:event_buttonCorrigeActionPerformed
+
+    private void buttonConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonConfirmaActionPerformed
 
     public static void main(String args[]) {
         try {
@@ -466,5 +496,6 @@ public class InterfaceUrna extends javax.swing.JFrame {
     private javax.swing.JLabel labelNCandidato4;
     private javax.swing.JLabel labelPartido;
     private javax.swing.JLabel labelTitulo;
+    private javax.swing.JPanel panelTeclado;
     // End of variables declaration//GEN-END:variables
 }
