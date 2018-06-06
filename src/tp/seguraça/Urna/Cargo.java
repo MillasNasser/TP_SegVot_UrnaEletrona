@@ -5,34 +5,49 @@
  */
 package tp.seguraça.Urna;
 
-import java.util.Vector;
+import java.util.HashMap;
 
 /**
- *
  * @author rafael
  */
 public class Cargo {
-    private Vector<Candidato> listaCandidato;
-    private String nome;
+    private final HashMap<Long, Candidato> listaCandidato;
+    private final String nome;
     
     public Cargo(String nome){
         this.nome = nome;
-        listaCandidato = new Vector<>();
+        listaCandidato = new HashMap<>();
     }
-
-    public Vector<Candidato> getListaCandidato() {
-        return listaCandidato;
-    }
+	
+	public Candidato getCandidato(Long numeroEleitoral) throws CloneNotSupportedException{
+		Candidato retorno;
+		retorno = listaCandidato.getOrDefault(numeroEleitoral,null);
+		if(retorno != null){
+			retorno = retorno.clone();
+		}
+		return retorno;
+	}
 
     public String getNome() {
         return nome;
     }
     
     public void adicionaCandidato(Candidato novoCandidato){
-        this.listaCandidato.add(novoCandidato);
+		boolean inserir;
+		inserir = listaCandidato.get(novoCandidato.getNumero()) == (null);
+		if(inserir){
+			this.listaCandidato.put(novoCandidato.getNumero(),
+									novoCandidato);
+			BancoDeVotos.addCandidato(novoCandidato);
+		}
     }
     
-    public void removeCandidato(Candidato novoCandidato){
-        this.listaCandidato.remove(novoCandidato);
+    public void removeCandidato(Candidato candidato){
+        this.listaCandidato.remove(candidato.getNumero());
     }
+	
+	public void remCandidatoDB(Candidato candidato){
+		this.listaCandidato.remove(candidato.getNumero());
+		BancoDeVotos.removeCandidato(candidato);
+	}
 }

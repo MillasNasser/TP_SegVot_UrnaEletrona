@@ -5,24 +5,46 @@
  */
 package tp.seguraça.TerminalMesario;
 
-import java.util.Vector;
+import java.util.HashMap;
 
 /**
  *
  * @author millas
+ * Singleton
  */
 public class TerminalMesario {
-	public Vector<Eleitor> eleitores;
+	private final static TerminalMesario INSTANCE = new TerminalMesario();
+	private static HashMap<String, Eleitor> eleitores;
 	
-	public TerminalMesario(){
-		eleitores = new Vector<>();
+	private TerminalMesario(){
+		eleitores = new HashMap<>();
 	}
 	
-	public void adicionarEleitor(Eleitor novoEleitor){
-		eleitores.add(novoEleitor);
+	public static TerminalMesario getInstance(){
+		return INSTANCE;
 	}
 	
-	public void verificarEleitor(Eleitor novoEleitor){
-		eleitores.add(novoEleitor);
+	public static boolean adicionarEleitor(Eleitor novoEleitor){
+		boolean inserir = true;
+		if (eleitores.get(novoEleitor.getTituloEleitor()) == null){
+			eleitores.put(novoEleitor.getTituloEleitor(), novoEleitor);
+		}else{
+			inserir = false;
+		}
+		return inserir;
+	}
+	
+	public static boolean verificarEleitor(String titulo){
+		return eleitores.get(titulo) != null &&
+				!eleitores.get(titulo).getJaVotou();
+	}
+	
+	public static boolean votar(String titulo){
+		if(verificarEleitor(titulo)){
+			Eleitor eleitor = eleitores.get(titulo);
+			eleitor.jaVotou(true);
+			return true;
+		}
+		return false;
 	}
 }
