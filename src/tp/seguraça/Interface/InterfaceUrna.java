@@ -2,6 +2,7 @@
 package tp.seguraça.Interface;
 
 import java.awt.Font;
+import java.awt.Toolkit;
 
 /**
  *
@@ -16,6 +17,13 @@ public class InterfaceUrna extends javax.swing.JFrame {
         // Mudando a cor de fundo e maximizando
         this.getContentPane().setBackground(new java.awt.Color(235,235,235));
         this.setExtendedState(InterfaceUrna.MAXIMIZED_BOTH);
+		
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		
+		int xsize = tk.getScreenSize().width,
+			ysize = tk.getScreenSize().height;
+		
+		this.setSize(xsize, ysize);
         
         // Inicianco votação
         iniciaVotacao();
@@ -419,12 +427,12 @@ public class InterfaceUrna extends javax.swing.JFrame {
             panelNumeroCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelNumeroCandidatoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelNumeroCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelNCandidato4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelNumeroCandidatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelNCandidato4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelNCandidato0, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNCandidato3, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNCandidato2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelNCandidato1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelNCandidato3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelNCandidato1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 

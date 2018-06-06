@@ -532,7 +532,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="labelNCandidato4" alignment="1" min="-2" pref="62" max="-2" attributes="0"/>
                           <Component id="labelNCandidato0" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                           <Component id="labelNCandidato3" alignment="1" min="-2" pref="62" max="-2" attributes="0"/>
