@@ -5,7 +5,8 @@
  */ 
 package tp.seguraça; 
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import tp.seguraça.TerminalMesario.Eleitor;
 import tp.seguraça.TerminalMesario.TerminalMesario;
 import tp.seguraça.Urna.Candidato;
@@ -37,18 +38,27 @@ public class TpSeguranca {
 		}
 		
 		/* Adicionar Votos */
-		Scanner scanner;
-		scanner = new Scanner(System.in);
+		BufferedReader scanner;
+		scanner = new BufferedReader(new InputStreamReader(System.in));
 		while(true){
-			long numCandidato;
-			numCandidato = scanner.nextLong();
-			if(numCandidato == -2){break;}
-			System.out.println("Candidato numero: "+numCandidato);
-			System.out.println(urna.getCandidato(numCandidato));
-			boolean voto = false;
-			voto = scanner.next().equals("S");
-			if(voto){
-				Urna.addVoto(presidente, numCandidato);
+			System.out.print("Digite o titulo do eleitor: ");
+			String titulo = scanner.readLine();
+			if(TerminalMesario.verificarEleitor(titulo)){
+				while(true){
+					System.out.print("Digite o numero do candidato: ");
+					long numCand = Long.parseLong(scanner.readLine());
+					System.out.println(Urna.getCandidato(numCand));
+					System.out.print("Confirma o voto?[S/N]: ");
+					if(scanner.readLine().equals("S")){
+						Urna.addVoto(presidente, numCand);
+						TerminalMesario.votar(titulo);
+						break;
+					}else{
+						System.out.println("Voto não confirmado");
+					}
+				}
+			}else{
+				break;
 			}
 		}
 		Urna.finalizar();

@@ -14,13 +14,23 @@ import tp.seguraça.Pessoa;
  */
 public class Eleitor extends  Pessoa{	
 	private final String tituloEleitor;
+	private boolean jaVotou;
 	
 	public Eleitor(String nome, String titulo){
 		super(nome);
 		this.tituloEleitor = titulo;
+		this.jaVotou = false;
 	}
 
 	public String getTituloEleitor() {
 		return tituloEleitor;
+	}
+	
+	protected void jaVotou(boolean valor){
+		this.jaVotou = valor;
+	}
+	
+	public boolean getJaVotou(){
+		return this.jaVotou;
 	}
 }

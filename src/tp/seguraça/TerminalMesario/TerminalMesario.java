@@ -5,7 +5,7 @@
  */
 package tp.seguraça.TerminalMesario;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -14,10 +14,10 @@ import java.util.ArrayList;
  */
 public class TerminalMesario {
 	private final static TerminalMesario INSTANCE = new TerminalMesario();
-	private static ArrayList<Eleitor> eleitores;
+	private static HashMap<String, Eleitor> eleitores;
 	
 	private TerminalMesario(){
-		eleitores = new ArrayList<>();
+		eleitores = new HashMap<>();
 	}
 	
 	public static TerminalMesario getInstance(){
@@ -26,23 +26,24 @@ public class TerminalMesario {
 	
 	public static boolean adicionarEleitor(Eleitor novoEleitor){
 		boolean inserir = true;
-		for(Eleitor eleitor: eleitores){
-			if(eleitor.getTituloEleitor().equals(novoEleitor.getTituloEleitor())){
-				inserir = false; break;
-			}
+		if (eleitores.get(novoEleitor.getTituloEleitor()) == null){
+			eleitores.put(novoEleitor.getTituloEleitor(), novoEleitor);
+		}else{
+			inserir = false;
 		}
-		if(inserir == true){
-			eleitores.add(novoEleitor);
-			return true;
-		}
-		return false;
+		return inserir;
 	}
 	
-	public boolean verificarEleitor(String titulo){
-		for(Eleitor eleitor: eleitores){
-			if(eleitor.getTituloEleitor().equals(titulo)){
-				return true;
-			}
+	public static boolean verificarEleitor(String titulo){
+		return eleitores.get(titulo) != null &&
+				!eleitores.get(titulo).getJaVotou();
+	}
+	
+	public static boolean votar(String titulo){
+		if(verificarEleitor(titulo)){
+			Eleitor eleitor = eleitores.get(titulo);
+			eleitor.jaVotou(true);
+			return true;
 		}
 		return false;
 	}
