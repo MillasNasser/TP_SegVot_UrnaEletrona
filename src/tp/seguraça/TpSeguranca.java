@@ -5,9 +5,7 @@
  */ 
 package tp.seguraça; 
 
-import Interface.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import tp.seguraça.Interface.InterfaceMesário;
 import tp.seguraça.Interface.InterfaceUrna;
 import tp.seguraça.TerminalMesario.Eleitor;
 import tp.seguraça.TerminalMesario.TerminalMesario;
@@ -49,9 +47,11 @@ public class TpSeguranca {
 		}
 		
 		/* Interfaces */
-		//InterfaceMesário a = new InterfaceMesário();
 		InterfaceUrna u = new InterfaceUrna();
-		//a.setVisible(true);
+		InterfaceMesário a = new InterfaceMesário();
+		u.setMesarioAssociado(a);
+		a.setUrnaAssociada(u);
+		a.setVisible(true);
 		u.setVisible(true);
 		
 		/* Adicionar Votos */

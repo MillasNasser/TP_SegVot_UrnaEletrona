@@ -1,5 +1,5 @@
 
-package Interface;
+package tp.seguraça.Interface;
 
 import java.awt.Color;
 import java.awt.Toolkit;
@@ -8,10 +8,14 @@ import tp.seguraça.TerminalMesario.TerminalMesario;
 
 
 public class InterfaceMesário extends javax.swing.JFrame {
-
+	InterfaceUrna urnaAssociada = null;
 
     public InterfaceMesário() {
-        initComponents();
+    }
+	
+	public void setUrnaAssociada(InterfaceUrna urna){
+		this.urnaAssociada = urna;
+		initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(new java.awt.Color(235,235,235)); 
         labelTitulo2.setVisible(false);
@@ -25,7 +29,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 		
 		this.setSize(xsize, ysize);
 		this.setLocation(0, 0);
-    }
+	}
     
     // Verificar se o título está no bd
     boolean tituloValido(String titulo){
@@ -90,10 +94,16 @@ public class InterfaceMesário extends javax.swing.JFrame {
         numeroTituloEleitor.setVisible(false);
         buttonBuscar.setVisible(false);
         buttonVaiVotar.setText("Clique aqui se o eleitor já votou!");
+		buttonVaiVotar.setVisible(false);
         labelTitulo.setText("Aguardando o eleitor votar...");
     }
     
-    void novaConsulta(){
+	public void setNewConsulta(boolean value){
+		novaConsulta();
+		urnaAssociada.telaBase("Ø");
+	}
+	
+    public void novaConsulta(){
         labelEleitor.setVisible(true);
         numeroTituloEleitor.setVisible(true);
         buttonBuscar.setVisible(true);
@@ -214,6 +224,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
     private void buttonVaiVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVaiVotarActionPerformed
         if("Prosseguir eleitor para votação".equals(buttonVaiVotar.getText())){
+			urnaAssociada.inicio();
             vaiVotar();
         } else if ("Clique aqui se o eleitor já votou!".equals(buttonVaiVotar.getText())){
             novaConsulta();
@@ -230,19 +241,16 @@ public class InterfaceMesário extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMesário.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMesário.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceMesário.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceMesário.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+		//</editor-fold>
+		
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
             public void run() {
                 new InterfaceMesário().setVisible(true);
             }

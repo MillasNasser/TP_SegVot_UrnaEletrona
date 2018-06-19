@@ -14,9 +14,15 @@ import tp.seguraça.Urna.Urna;
 public class InterfaceUrna extends javax.swing.JFrame {
 	private String numeroCandidato;
 	private int index;
+	InterfaceMesário mesarioAssociado = null;
 	
-    public InterfaceUrna() {
-        initComponents();
+    public InterfaceUrna() {        
+		//telaBase("Ø");
+    }
+	
+	public void setMesarioAssociado(InterfaceMesário mesario){
+		this.mesarioAssociado = mesario;
+		initComponents();
         
         // Mudando a cor de fundo e maximizando
         this.getContentPane().setBackground(new java.awt.Color(235,235,235));
@@ -32,10 +38,14 @@ public class InterfaceUrna extends javax.swing.JFrame {
         // Inicianco votação
 		numeroCandidato = "";
 		index = 0;
-		//telaBase("Ø");
-        iniciaVotacao();
-    }
+		telaBase("Ø");
+	}
     
+	public void inicio(){
+		telaInicio("Digite o número do seu candidato!");
+		iniciaVotacao();
+	}
+	
     // Iniciar Votação
     public void iniciaVotacao(){
          // Setando labels
@@ -138,6 +148,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
 			index++;
 			limpa();
 			telaBase("FIM");
+			mesarioAssociado.setNewConsulta(true);
          }
     }
     
@@ -146,6 +157,11 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		panelTeclado.setVisible(false);
 		labelTitulo.setText(nome);
 		labelTitulo.setFont(new Font("Dialog", Font.PLAIN, 200));
+	}
+	
+	public void telaInicio(String nome){
+		labelTitulo.setText(nome);
+		labelTitulo.setFont(new Font("Dialog", Font.PLAIN, 24));
 	}
 	
     // Ação confirma
