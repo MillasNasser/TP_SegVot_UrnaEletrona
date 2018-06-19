@@ -50,10 +50,10 @@ public class Candidato extends Pessoa{
 	@Override
 	public String toString() {
 		String candidato;
-		candidato = getNome()+ " " + getNumero()+"\n";
-		candidato += Partido+"\n";
+		candidato = getNome()+ ", numero: " + getNumero()+"\n";
+		candidato += "Partido: "+Partido+"\n";
 		return candidato;
-	}
+	}	
 	
 	/**
 	 *

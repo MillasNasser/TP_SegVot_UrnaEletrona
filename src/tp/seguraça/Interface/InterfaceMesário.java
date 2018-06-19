@@ -2,6 +2,8 @@
 package Interface;
 
 import java.awt.Color;
+import java.awt.Toolkit;
+import tp.seguraça.TerminalMesario.TerminalMesario;
 
 
 
@@ -16,6 +18,13 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelSituacao.setVisible(false);
         labelResultadoFinal.setVisible(false);
         buttonVaiVotar.setVisible(false);
+		
+		Toolkit tk = Toolkit.getDefaultToolkit();
+		int xsize = tk.getScreenSize().width;
+		int ysize = tk.getScreenSize().height;
+		
+		this.setSize(xsize, ysize);
+		this.setLocation(0, 0);
     }
     
     // Verificar se o título está no bd
@@ -58,17 +67,19 @@ public class InterfaceMesário extends javax.swing.JFrame {
     void verificaEleitor(String titulo){
         String Resultado = situacaoEleitor(titulo);
         labelSituacao.setText(Resultado);
-        if(tituloValido(titulo) && secaoCerta(titulo,"secao") && naoVotou(titulo)){
+		System.out.println(titulo);
+        if(TerminalMesario.verificarEleitor(titulo)){
             labelResultadoFinal.setText("O eleitor está apto a votar!");
             labelResultadoFinal.setForeground(Color.blue);
+			buttonVaiVotar.setVisible(true);
         } else {
             labelResultadoFinal.setText("O eleitor não está apto a votar!");
             labelResultadoFinal.setForeground(Color.red);
+			numeroTituloEleitor.setText("");
         }
         labelTitulo2.setVisible(true);
-        labelSituacao.setVisible(true);
+        //labelSituacao.setVisible(true);
         labelResultadoFinal.setVisible(true);
-        buttonVaiVotar.setVisible(true);
     }
     
     void vaiVotar(){
@@ -97,17 +108,20 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
         labelTitulo = new javax.swing.JLabel();
         labelEleitor = new javax.swing.JLabel();
-        numeroTituloEleitor = new javax.swing.JFormattedTextField();
         buttonBuscar = new javax.swing.JButton();
         labelTitulo2 = new javax.swing.JLabel();
         labelSituacao = new javax.swing.JLabel();
         labelResultadoFinal = new javax.swing.JLabel();
         buttonVaiVotar = new javax.swing.JButton();
+        numeroTituloEleitor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Terminal Mesário");
         setBackground(new java.awt.Color(183, 166, 166));
+        setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(676, 289));
+        setUndecorated(true);
+        setResizable(false);
 
         labelTitulo.setFont(new java.awt.Font("TakaoPGothic", 1, 18)); // NOI18N
         labelTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -115,13 +129,6 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
         labelEleitor.setFont(new java.awt.Font("TakaoPGothic", 1, 14)); // NOI18N
         labelEleitor.setText("Digite número do título de eleitor");
-
-        try {
-            numeroTituloEleitor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#### #### ####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        numeroTituloEleitor.setToolTipText("");
 
         buttonBuscar.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         buttonBuscar.setText("Verificar");
@@ -156,24 +163,21 @@ public class InterfaceMesário extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
+                .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-                            .addComponent(labelResultadoFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(labelTitulo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelEleitor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(56, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
+                        .addComponent(labelResultadoFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelTitulo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(labelEleitor)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(buttonVaiVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,8 +191,8 @@ public class InterfaceMesário extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(buttonBuscar))
+                    .addComponent(buttonBuscar)
+                    .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelTitulo2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -253,6 +257,6 @@ public class InterfaceMesário extends javax.swing.JFrame {
     private javax.swing.JLabel labelSituacao;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelTitulo2;
-    private javax.swing.JFormattedTextField numeroTituloEleitor;
+    private javax.swing.JTextField numeroTituloEleitor;
     // End of variables declaration//GEN-END:variables
 }

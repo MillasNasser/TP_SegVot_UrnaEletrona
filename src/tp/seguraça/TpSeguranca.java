@@ -5,8 +5,10 @@
  */ 
 package tp.seguraça; 
 
+import Interface.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import tp.seguraça.Interface.InterfaceUrna;
 import tp.seguraça.TerminalMesario.Eleitor;
 import tp.seguraça.TerminalMesario.TerminalMesario;
 import tp.seguraça.Urna.Candidato;
@@ -24,21 +26,36 @@ public class TpSeguranca {
 	 * @throws java.lang.Exception 
      */ 
     public static void main(String[] args) throws Exception { 
+		
 		Urna urna = Urna.getInstance();
 		TerminalMesario terminal = TerminalMesario.getInstance();
-		Cargo presidente = new Cargo("Presidente");
-		boolean addCargos;
-		addCargos = Urna.addCargos(presidente);
-		if (addCargos == false){
-			throw new Exception("Cargo não adicionado");
-		}
-		for(int i = 0; i < 10; i++){
-			TerminalMesario.adicionarEleitor(new Eleitor("Eleitor "+i, "0"+i));
-			presidente.adicionaCandidato(new Candidato("Candidato "+i, i, "Partido "+i));
+		String[] cargos = {
+					"DEPUTADO ESTADUAL",
+					"DEPUTADO FERDERAL",
+					"SENADOR",
+					"GOVERNADOR",
+					"PRESIDENTE"};
+		
+		/* Adicionando os cargos e os candidatos de cada 1 */
+		int numCand = 0;
+		for(String cargo: cargos){
+			Cargo novoCargo = new Cargo(cargo);
+			for(int i = 0; i < 5; i++){
+				TerminalMesario.adicionarEleitor(new Eleitor("João "+i, "0"+i));
+				novoCargo.adicionaCandidato(new Candidato("Jorgim "+cargo.substring(0, 4)+" "+i, numCand, "Part "+i));
+				numCand++;
+			}
+			Urna.addCargos(novoCargo);
 		}
 		
+		/* Interfaces */
+		//InterfaceMesário a = new InterfaceMesário();
+		InterfaceUrna u = new InterfaceUrna();
+		//a.setVisible(true);
+		u.setVisible(true);
+		
 		/* Adicionar Votos */
-		BufferedReader scanner;
+		/*BufferedReader scanner;
 		scanner = new BufferedReader(new InputStreamReader(System.in));
 		while(true){
 			System.out.print("Digite o titulo do eleitor: ");
@@ -61,7 +78,7 @@ public class TpSeguranca {
 				break;
 			}
 		}
-		Urna.finalizar();
+		Urna.finalizar();*/
     }
      
 }

@@ -39,9 +39,8 @@ public class Urna {
 		return INSTANCE;
 	}
 	
-	public static boolean addCargos(Cargo novoCargo){
-		boolean add = cargos.add(novoCargo);
-		return add;
+	public static void addCargos(Cargo novoCargo){
+		 cargos.add(novoCargo);
 	}
 	
 	public static String getCandidato(Long numero) throws CloneNotSupportedException{
@@ -54,6 +53,27 @@ public class Urna {
 			retorno = candidato.toString();
 		}
 		return retorno;
+	}
+	
+	public static Candidato __candInterface(Long numero, int index){
+		System.out.println(""+numero);
+		
+		Cargo cargo = cargos.get(index);
+		if(cargo == null){
+			System.exit(-3);
+		}
+		Candidato candidato = null;
+		try {
+			candidato = cargo.getCandidato(numero);
+		} catch (CloneNotSupportedException ex) {
+			System.out.println("Erro ao clonar objeto");
+			Logger.getLogger(Urna.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		if (candidato == null){
+			return NULO;
+		}
+		return candidato;
+	
 	}
 	
 	public static void addCandidato(Candidato novoCandidato, Cargo cargo){

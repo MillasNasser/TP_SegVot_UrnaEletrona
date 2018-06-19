@@ -3,6 +3,8 @@ package tp.seguraça.Interface;
 
 import java.awt.Font;
 import java.awt.Toolkit;
+import tp.seguraça.Urna.Candidato;
+import tp.seguraça.Urna.Urna;
 
 /**
  *
@@ -10,7 +12,9 @@ import java.awt.Toolkit;
  */
 
 public class InterfaceUrna extends javax.swing.JFrame {
-
+	private String numeroCandidato;
+	private int index;
+	
     public InterfaceUrna() {
         initComponents();
         
@@ -26,6 +30,9 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		this.setSize(xsize, ysize);
         
         // Inicianco votação
+		numeroCandidato = "";
+		index = 0;
+		//telaBase("Ø");
         iniciaVotacao();
     }
     
@@ -49,54 +56,61 @@ public class InterfaceUrna extends javax.swing.JFrame {
     }
     
     // Verifica se o eleitor já digitou todo o número
-    public void verificaFim(){
+    public void verificaFim(String numero){
+		Candidato candidato = Urna.__candInterface(Long.parseLong(numero),index);
         if("Digite o número para o cargo de DEPUTADO ESTADUAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato0.getText())){
             // BUSCAR CANDITADO BANCO DE DADOS
             mostraLabelCandidato();
             labelCargo.setText("DEPUTADO ESTADUAL");
-            labelCandidato.setText("JOÃO DO MAR");
-            labelPartido.setText("ADT");
+            labelCandidato.setText(candidato.getNome());
+            labelPartido.setText(candidato.getPartido());
         } else if("Digite o número para o cargo de DEPUTADO FEDERAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato1.getText())){
             // BUSCAR CANDITADO BANCO DE DADOS
             mostraLabelCandidato();
             labelCargo.setText("DEPUTADO FERDERAL");
-            labelCandidato.setText("JOÃO DA TERRA");
-            labelPartido.setText("ADF");
+            labelCandidato.setText(candidato.getNome());
+            labelPartido.setText(candidato.getPartido());
         } else if("Digite o número para o cargo de SENADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato2.getText())){
             // BUSCAR CANDITADO BANCO DE DADOS
             mostraLabelCandidato();
             labelCargo.setText("SENADOR");
-            labelCandidato.setText("JOÃO DO CEU");
-            labelPartido.setText("AVT");
+            labelCandidato.setText(candidato.getNome());
+            labelPartido.setText(candidato.getPartido());
         } else if("Digite o número para o cargo de GOVERNADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
             // BUSCAR CANDITADO BANCO DE DADOS
             mostraLabelCandidato();
             labelCargo.setText("GOVERNADOR");
-            labelCandidato.setText("JOÃO DO NORTE");
-            labelPartido.setText("ACE");
+            labelCandidato.setText(candidato.getNome());
+            labelPartido.setText(candidato.getPartido());
         } else if("Digite o número para o cargo de PRESIDENTE".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
             // BUSCAR CANDITADO BANCO DE DADOS
             mostraLabelCandidato();
             labelCargo.setText("PRESIDENTE");
-            labelCandidato.setText("JOÃO DO SUL");
-            labelPartido.setText("ANU");
+            labelCandidato.setText(candidato.getNome());
+            labelPartido.setText(candidato.getPartido());
         }
     }
     
     // Adiciona o número na tela
     public void adicionaNumero(String numero){
         if("".equals(labelNCandidato4.getText()) && labelNCandidato4.isVisible()){
+			numeroCandidato = "";
             labelNCandidato4.setText(numero);
+			numeroCandidato += numero;
         }else if("".equals(labelNCandidato3.getText()) && labelNCandidato3.isVisible()){
             labelNCandidato3.setText(numero);
+			numeroCandidato += numero;
         }else if("".equals(labelNCandidato2.getText()) && labelNCandidato2.isVisible()){
             labelNCandidato2.setText(numero);
+			numeroCandidato += numero;
         }else if("".equals(labelNCandidato1.getText()) && labelNCandidato1.isVisible()){
             labelNCandidato1.setText(numero);
+			numeroCandidato += numero;
         }else if("".equals(labelNCandidato0.getText()) && labelNCandidato0.isVisible()){
             labelNCandidato0.setText(numero);
+			numeroCandidato += numero;
         }
-        verificaFim();
+        verificaFim(numero);
     }
     
     // Vai para o próximo candidato
@@ -104,30 +118,40 @@ public class InterfaceUrna extends javax.swing.JFrame {
          if("Digite o número para o cargo de DEPUTADO ESTADUAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato0.getText())){
              labelTitulo.setText("Digite o número para o cargo de DEPUTADO FEDERAL");
              labelNCandidato0.setVisible(false);
+			 index++;
              limpa();
          } else if ("Digite o número para o cargo de DEPUTADO FEDERAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato1.getText())){
              labelTitulo.setText("Digite o número para o cargo de SENADOR");
              labelNCandidato1.setVisible(false);
+			 index++;
              limpa();
          } else if ("Digite o número para o cargo de SENADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato2.getText())){
              labelTitulo.setText("Digite o número para o cargo de GOVERNADOR");
              labelNCandidato2.setVisible(false);
+			 index++;
              limpa();
          } else if ("Digite o número para o cargo de GOVERNADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
              labelTitulo.setText("Digite o número para o cargo de PRESIDENTE");
+			 index++;
              limpa();
          } else if ("Digite o número para o cargo de PRESIDENTE".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
-             limpa();
-             paneCargo.setVisible(false);
-             panelTeclado.setVisible(false);
-             labelTitulo.setText("FIM");
-             labelTitulo.setFont(new Font("Dialog", Font.PLAIN, 200));
+			index++;
+			limpa();
+			telaBase("FIM");
          }
     }
     
+	public void telaBase(String nome){
+		paneCargo.setVisible(false);
+		panelTeclado.setVisible(false);
+		labelTitulo.setText(nome);
+		labelTitulo.setFont(new Font("Dialog", Font.PLAIN, 200));
+	}
+	
     // Ação confirma
     public void confirma(){
         // SALVAR VOTO URNA
+		System.out.println(numeroCandidato);
         proximoCandidato();
     }
     
