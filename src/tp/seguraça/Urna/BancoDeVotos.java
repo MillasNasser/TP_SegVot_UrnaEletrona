@@ -45,7 +45,7 @@ public final class BancoDeVotos{
 		for (Candidato candidato: candidatos){
 			boletim += candidato.toString();
 			boletim += candidato.getVoto()+"\n";
-			boletim += "-----------------------------";
+			boletim += "-----------------------------\n";
 		}
 		return boletim;
 	}
@@ -56,6 +56,7 @@ public final class BancoDeVotos{
 		hash = generateHash(geraBoletim());
 		boletim = geraBoletim();
 		System.out.println(hash);
+		System.out.println(boletim);
 	}
 	
 	/* Procedimentos de finalização */

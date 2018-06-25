@@ -1,0 +1,47 @@
+Presidente:
+Ciro Gomes,30,PDT
+Geraldo Alckmin,45,PSDB
+Jair Bolsonaro,20,PSL
+Luiz Inácio Lula da Silva,13,PT
+Marina Silva,40,Rede
+
+Senador:
+Laila Medeiros,389,PSDB
+Cloe Guimarães,678,PSDB
+Rafaela Mauricio,594,PSDB
+Diana Vitor,318,PSL
+Santos Moraes,110,PT
+Diogo Santos,711,PT
+Fábio Freitas,892,PDT
+
+Deputado Federal:
+Rebeca Amaral,1439,PSDB
+Giovana Frias,1244,PSDB
+Juliano Souza,1716,PSDB
+Agnes Menezes,1335,PSL
+Ezequiel Vitor,1877,PT
+Maria Lessa,1192,PT
+Davi Lucca Menezzes,1498,PT
+Gustavo Xavier,1506,PDT
+Calebe Leão,1970,PDT
+Yuri Rodrigues,1386,PSL
+
+Deputado Estadual:
+Marcos Maximus,34512,PDT
+Bárbara Frota,12383,PDT
+Miguel Freitas,10225,PSL
+André Carvalho,12176,PSL
+Bryan Moraes,10661,PSDB
+Olívia Maximus,14252,PSDB
+Helena Barreto,37521,PSDB
+Anabela Boaventura,12114,PT
+Vicente Suarez,49999,PT
+Caio Gonçalves,71912,PT
+Maria Araújo,11644,Rede
+
+Gorvernador:
+Vinicius Junqueira,90,PSDB
+Giovanna Oliveira,19,PSL
+Douglas Marques,84,PDT
+Isabel Guimarães,58,Rede
+Nicole Amaral,13,PT

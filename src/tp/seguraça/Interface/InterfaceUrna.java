@@ -1,8 +1,13 @@
 
 package tp.seguraça.Interface;
 
+import Exceções.VotoInseridoException;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JLabel;
 import tp.seguraça.Urna.Candidato;
 import tp.seguraça.Urna.Urna;
 
@@ -13,6 +18,8 @@ import tp.seguraça.Urna.Urna;
 
 public class InterfaceUrna extends javax.swing.JFrame {
 	private String numeroCandidato;
+	private ArrayList<String> cargos;
+	private ArrayList<JLabel> campos = new ArrayList<>();
 	private int index;
 	InterfaceMesário mesarioAssociado = null;
 	
@@ -20,7 +27,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		//telaBase("Ø");
     }
 	
-	public void setMesarioAssociado(InterfaceMesário mesario){
+	public void setMesarioAssociado(InterfaceMesário mesario) throws Exception{
 		this.mesarioAssociado = mesario;
 		initComponents();
         
@@ -37,6 +44,17 @@ public class InterfaceUrna extends javax.swing.JFrame {
         
         // Inicianco votação
 		numeroCandidato = "";
+		cargos = Urna.getCargos();
+		
+		campos.add(labelNCandidato4);
+		campos.add(labelNCandidato3);
+		campos.add(labelNCandidato2);
+		campos.add(labelNCandidato1);
+		campos.add(labelNCandidato0);
+		
+		if(cargos.size() < 1){
+			throw new Exception("Não há cargo para validar");
+		}
 		index = 0;
 		telaBase("Ø");
 	}
@@ -54,102 +72,69 @@ public class InterfaceUrna extends javax.swing.JFrame {
         labelCargo.setText("Cargo");
         labelCandidato.setText("Candidato");
         labelPartido.setText("Partido");
-        labelTitulo.setText("Digite o número para o cargo de DEPUTADO ESTADUAL");
-    }
-    
-    
-    // Mostra os labels
-    public void mostraLabelCandidato(){
-        labelCargo.setVisible(true);
-        labelCandidato.setVisible(true);
-        labelPartido.setVisible(true);
+        labelTitulo.setText("Digite o número para o cargo de "+cargos.get(index));
     }
     
     // Verifica se o eleitor já digitou todo o número
     public void verificaFim(String numero){
 		Candidato candidato = Urna.__candInterface(Long.parseLong(numero),index);
-        if("Digite o número para o cargo de DEPUTADO ESTADUAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato0.getText())){
-            // BUSCAR CANDITADO BANCO DE DADOS
-            mostraLabelCandidato();
-            labelCargo.setText("DEPUTADO ESTADUAL");
-            labelCandidato.setText(candidato.getNome());
-            labelPartido.setText(candidato.getPartido());
-        } else if("Digite o número para o cargo de DEPUTADO FEDERAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato1.getText())){
-            // BUSCAR CANDITADO BANCO DE DADOS
-            mostraLabelCandidato();
-            labelCargo.setText("DEPUTADO FERDERAL");
-            labelCandidato.setText(candidato.getNome());
-            labelPartido.setText(candidato.getPartido());
-        } else if("Digite o número para o cargo de SENADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato2.getText())){
-            // BUSCAR CANDITADO BANCO DE DADOS
-            mostraLabelCandidato();
-            labelCargo.setText("SENADOR");
-            labelCandidato.setText(candidato.getNome());
-            labelPartido.setText(candidato.getPartido());
-        } else if("Digite o número para o cargo de GOVERNADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
-            // BUSCAR CANDITADO BANCO DE DADOS
-            mostraLabelCandidato();
-            labelCargo.setText("GOVERNADOR");
-            labelCandidato.setText(candidato.getNome());
-            labelPartido.setText(candidato.getPartido());
-        } else if("Digite o número para o cargo de PRESIDENTE".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
-            // BUSCAR CANDITADO BANCO DE DADOS
-            mostraLabelCandidato();
-            labelCargo.setText("PRESIDENTE");
-            labelCandidato.setText(candidato.getNome());
-            labelPartido.setText(candidato.getPartido());
-        }
+		labelCandidato.setText(candidato.getNome()); 
+		labelPartido.setText(candidato.getPartido());
     }
     
+	void resetaUrna(){
+		labelNCandidato4.setText("");
+		labelNCandidato3.setText("");
+		labelNCandidato2.setText("");
+		labelNCandidato1.setText("");
+		labelNCandidato0.setText("");
+		labelNCandidato4.setVisible(true);
+		labelNCandidato3.setVisible(true);
+		labelNCandidato2.setVisible(true);
+		labelNCandidato1.setVisible(true);
+		labelNCandidato0.setVisible(true);
+		numeroCandidato = "";
+		index = 0;
+	}
+	
     // Adiciona o número na tela
     public void adicionaNumero(String numero){
         if("".equals(labelNCandidato4.getText()) && labelNCandidato4.isVisible()){
 			numeroCandidato = "";
             labelNCandidato4.setText(numero);
-			numeroCandidato += numero;
+			numeroCandidato = numeroCandidato + numero;
         }else if("".equals(labelNCandidato3.getText()) && labelNCandidato3.isVisible()){
             labelNCandidato3.setText(numero);
-			numeroCandidato += numero;
+			numeroCandidato = numeroCandidato + numero;
         }else if("".equals(labelNCandidato2.getText()) && labelNCandidato2.isVisible()){
             labelNCandidato2.setText(numero);
-			numeroCandidato += numero;
+			numeroCandidato = numeroCandidato + numero;
         }else if("".equals(labelNCandidato1.getText()) && labelNCandidato1.isVisible()){
             labelNCandidato1.setText(numero);
-			numeroCandidato += numero;
+			numeroCandidato = numeroCandidato + numero;
         }else if("".equals(labelNCandidato0.getText()) && labelNCandidato0.isVisible()){
             labelNCandidato0.setText(numero);
-			numeroCandidato += numero;
+			numeroCandidato = numeroCandidato + numero;
         }
-        verificaFim(numero);
+        verificaFim(numeroCandidato);
     }
     
     // Vai para o próximo candidato
     public void proximoCandidato(){
-         if("Digite o número para o cargo de DEPUTADO ESTADUAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato0.getText())){
-             labelTitulo.setText("Digite o número para o cargo de DEPUTADO FEDERAL");
-             labelNCandidato0.setVisible(false);
-			 index++;
-             limpa();
-         } else if ("Digite o número para o cargo de DEPUTADO FEDERAL".equals(labelTitulo.getText()) && !"".equals(labelNCandidato1.getText())){
-             labelTitulo.setText("Digite o número para o cargo de SENADOR");
-             labelNCandidato1.setVisible(false);
-			 index++;
-             limpa();
-         } else if ("Digite o número para o cargo de SENADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato2.getText())){
-             labelTitulo.setText("Digite o número para o cargo de GOVERNADOR");
-             labelNCandidato2.setVisible(false);
-			 index++;
-             limpa();
-         } else if ("Digite o número para o cargo de GOVERNADOR".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
-             labelTitulo.setText("Digite o número para o cargo de PRESIDENTE");
-			 index++;
-             limpa();
-         } else if ("Digite o número para o cargo de PRESIDENTE".equals(labelTitulo.getText()) && !"".equals(labelNCandidato3.getText())){
+		if(!campos.get(4).getText().isEmpty()){
 			index++;
+			/* Se chegou ao limite de cargos */
+			if(index == cargos.size()){
+				limpa();
+				resetaUrna();
+				telaBase("FIM");
+				mesarioAssociado.setNewConsulta(true);
+				return;
+			}
+			labelTitulo.setText("Digite o número para o cargo de "+cargos.get(index));
+			//labelNCandidato0.setVisible(false);
 			limpa();
-			telaBase("FIM");
-			mesarioAssociado.setNewConsulta(true);
-         }
+		}
     }
     
 	public void telaBase(String nome){
@@ -167,7 +152,11 @@ public class InterfaceUrna extends javax.swing.JFrame {
     // Ação confirma
     public void confirma(){
         // SALVAR VOTO URNA
-		System.out.println(numeroCandidato);
+		try {
+			Urna.addVoto(index, Integer.parseInt(numeroCandidato));
+		} catch (VotoInseridoException ex) {
+			Logger.getLogger(InterfaceUrna.class.getName()).log(Level.SEVERE, null, ex);
+		}
         proximoCandidato();
     }
     
@@ -393,6 +382,11 @@ public class InterfaceUrna extends javax.swing.JFrame {
         buttonBranco.setBackground(new java.awt.Color(255, 255, 255));
         buttonBranco.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
         buttonBranco.setText("Branco");
+        buttonBranco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBrancoActionPerformed(evt);
+            }
+        });
 
         buttonCorrige.setBackground(new java.awt.Color(255, 153, 51));
         buttonCorrige.setFont(new java.awt.Font("Noto Sans", 1, 12)); // NOI18N
@@ -618,6 +612,16 @@ public class InterfaceUrna extends javax.swing.JFrame {
         adicionaNumero("0");
     }//GEN-LAST:event_buttonN0ActionPerformed
 
+    private void buttonBrancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBrancoActionPerformed
+		labelNCandidato4.setText(" ");
+		labelNCandidato3.setText(" ");
+		labelNCandidato2.setText(" ");
+		labelNCandidato1.setText(" ");
+		labelNCandidato0.setText(" ");
+		numeroCandidato = "-1";
+		verificaFim(numeroCandidato);
+    }//GEN-LAST:event_buttonBrancoActionPerformed
+
     public static void main(String args[]) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -626,18 +630,15 @@ public class InterfaceUrna extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUrna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUrna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InterfaceUrna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(InterfaceUrna.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+		//</editor-fold>
+		
         //</editor-fold>
 
         java.awt.EventQueue.invokeLater(new Runnable() {
+			@Override
             public void run() {
                 new InterfaceUrna().setVisible(true);
             }

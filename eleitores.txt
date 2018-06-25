@@ -1,0 +1,21 @@
+teste,0
+Anderson Rodrigues,456234443
+Isabella Soares,165980187
+Arthur Gabriel,338627017
+Clara Pereira,271117813
+Débora Campos,110336793
+Nicole Marques,468413347
+Cloe Mauricio,239990341
+Raul Nogueira,389773645
+Laila Ferrari,468403340
+Ester Camargo,294854459
+Cecília Cavalcante,348280683
+Maria Garcia,467466269
+Diana Alves,46840334
+Ingrid Vieira,337310026
+Thomas Pereira,234443000
+Yasmin Vitor,123999034
+Adriana Lessa,429085072
+Enzo Gabriel Mesquita,239990345
+Benjamim Martinele,328627011
+Leonardo Figueira,165980187

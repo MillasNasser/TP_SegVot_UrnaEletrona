@@ -5,6 +5,9 @@
  */ 
 package tp.seguraça; 
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import tp.seguraça.Interface.InterfaceMesário;
 import tp.seguraça.Interface.InterfaceUrna;
 import tp.seguraça.TerminalMesario.Eleitor;
@@ -19,6 +22,55 @@ import tp.seguraça.Urna.Urna;
  */ 
 public class TpSeguranca { 
  
+	private static void addEleitor(String path) throws Exception{
+		File eleitores = new File(path);
+		
+		BufferedReader reader = new BufferedReader(new FileReader(eleitores));
+		
+		String linha;
+		while((linha = reader.readLine()) != null){
+			String eleitor[] = linha.split(",");
+			if(eleitor.length != 2){
+				continue;
+			}
+			TerminalMesario.adicionarEleitor(new Eleitor(eleitor[0], eleitor[1]));
+		}
+	}
+	
+	private static void addCargos(String path) throws Exception{
+		File candidatos = new File(path);
+		BufferedReader reader = new BufferedReader(new FileReader(candidatos));
+		
+		String linha;
+		linha = reader.readLine();
+		Cargo cargo = null;
+		while(linha != null){
+			String candidato[] = linha.split(",");
+			linha = reader.readLine();
+			
+			/* É um cargo */
+			if(candidato.length == 1 && candidato[0].length() > 0){
+				/* Removendo o ultimo simbolo*/
+				candidato[0] = candidato[0].replaceFirst(".$","");
+				
+				/* Adicionando o cargo a urna */
+				cargo = new Cargo(candidato[0]);
+				Urna.addCargos(cargo);
+			}else 
+			/* É um candidato */
+			if(candidato.length == 3 && cargo != null){
+				cargo.adicionaCandidato(
+					new Candidato(
+						candidato[0], 
+						Long.parseLong(candidato[1]), 
+						candidato[2], 
+						cargo.getNome()
+					)
+				);
+			}
+		}
+	}
+	
     /** 
      * @param args the command line arguments 
 	 * @throws java.lang.Exception 
@@ -27,24 +79,37 @@ public class TpSeguranca {
 		
 		Urna urna = Urna.getInstance();
 		TerminalMesario terminal = TerminalMesario.getInstance();
-		String[] cargos = {
+		/*String[] cargos = {
 					"DEPUTADO ESTADUAL",
 					"DEPUTADO FERDERAL",
-					"SENADOR",
+					"Panelinha",
 					"GOVERNADOR",
 					"PRESIDENTE"};
-		
+		System.out.println("Working Directory = " +
+              System.getProperty("user.dir"));
 		/* Adicionando os cargos e os candidatos de cada 1 */
-		int numCand = 0;
-		for(String cargo: cargos){
-			Cargo novoCargo = new Cargo(cargo);
-			for(int i = 0; i < 5; i++){
-				TerminalMesario.adicionarEleitor(new Eleitor("João "+i, "0"+i));
-				novoCargo.adicionaCandidato(new Candidato("Jorgim "+cargo.substring(0, 4)+" "+i, numCand, "Part "+i));
-				numCand++;
-			}
-			Urna.addCargos(novoCargo);
-		}
+		
+		addEleitor(""
+			+ "/mnt/"
+			+ "981C548C1C546772/"
+			+ "Dropbox/"
+			+ "UFSJ/"
+			+ "0_TP's/"
+			+ "2018-1/"
+			+ "SegurancaVotacaoEletronica/"
+			+ "TP_SegVot_UrnaEletrona/"
+			+ "eleitores.txt");
+		
+		addCargos(""
+			+ "/mnt/"
+			+ "981C548C1C546772/"
+			+ "Dropbox/"
+			+ "UFSJ/"
+			+ "0_TP's/"
+			+ "2018-1/"
+			+ "SegurancaVotacaoEletronica/"
+			+ "TP_SegVot_UrnaEletrona/"
+			+ "candidatos.txt");
 		
 		/* Interfaces */
 		InterfaceUrna u = new InterfaceUrna();
@@ -53,32 +118,5 @@ public class TpSeguranca {
 		a.setUrnaAssociada(u);
 		a.setVisible(true);
 		u.setVisible(true);
-		
-		/* Adicionar Votos */
-		/*BufferedReader scanner;
-		scanner = new BufferedReader(new InputStreamReader(System.in));
-		while(true){
-			System.out.print("Digite o titulo do eleitor: ");
-			String titulo = scanner.readLine();
-			if(TerminalMesario.verificarEleitor(titulo)){
-				while(true){
-					System.out.print("Digite o numero do candidato: ");
-					long numCand = Long.parseLong(scanner.readLine());
-					Urna.printVoto(numCand, presidente);
-					System.out.print("Confirma o voto?[S/N]: ");
-					if(scanner.readLine().equals("S")){
-						Urna.addVoto(presidente, numCand);
-						TerminalMesario.votar(titulo);
-						break;
-					}else{
-						System.out.println("Voto não confirmado");
-					}
-				}
-			}else{
-				break;
-			}
-		}
-		Urna.finalizar();*/
     }
-     
 }

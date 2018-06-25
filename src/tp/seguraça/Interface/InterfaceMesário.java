@@ -4,11 +4,13 @@ package tp.seguraça.Interface;
 import java.awt.Color;
 import java.awt.Toolkit;
 import tp.seguraça.TerminalMesario.TerminalMesario;
+import tp.seguraça.Urna.Urna;
 
 
 
 public class InterfaceMesário extends javax.swing.JFrame {
 	InterfaceUrna urnaAssociada = null;
+	String titulo = "";
 
     public InterfaceMesário() {
     }
@@ -71,9 +73,9 @@ public class InterfaceMesário extends javax.swing.JFrame {
     void verificaEleitor(String titulo){
         String Resultado = situacaoEleitor(titulo);
         labelSituacao.setText(Resultado);
-		System.out.println(titulo);
         if(TerminalMesario.verificarEleitor(titulo)){
             labelResultadoFinal.setText("O eleitor está apto a votar!");
+			this.titulo = titulo;
             labelResultadoFinal.setForeground(Color.blue);
 			buttonVaiVotar.setVisible(true);
         } else {
@@ -93,6 +95,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelEleitor.setVisible(false);
         numeroTituloEleitor.setVisible(false);
         buttonBuscar.setVisible(false);
+		TerminalMesario.votar(this.titulo);
         buttonVaiVotar.setText("Clique aqui se o eleitor já votou!");
 		buttonVaiVotar.setVisible(false);
         labelTitulo.setText("Aguardando o eleitor votar...");
@@ -124,6 +127,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelResultadoFinal = new javax.swing.JLabel();
         buttonVaiVotar = new javax.swing.JButton();
         numeroTituloEleitor = new javax.swing.JTextField();
+        finalizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Terminal Mesário");
@@ -168,35 +172,38 @@ public class InterfaceMesário extends javax.swing.JFrame {
             }
         });
 
+        finalizar.setText("finalizar");
+        finalizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                finalizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(78, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-                        .addComponent(labelResultadoFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(labelTitulo2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(labelEleitor)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelResultadoFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonVaiVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelEleitor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(finalizar))
                 .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonVaiVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addGap(36, 36, 36)
                 .addComponent(labelTitulo)
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -211,12 +218,17 @@ public class InterfaceMesário extends javax.swing.JFrame {
                 .addComponent(labelResultadoFinal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(buttonVaiVotar)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addGap(8, 8, 8)
+                .addComponent(finalizar))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
+        Urna.finalizar();
+    }//GEN-LAST:event_finalizarActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
         verificaEleitor(numeroTituloEleitor.getText());
@@ -224,7 +236,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
     private void buttonVaiVotarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVaiVotarActionPerformed
         if("Prosseguir eleitor para votação".equals(buttonVaiVotar.getText())){
-			urnaAssociada.inicio();
+            urnaAssociada.inicio();
             vaiVotar();
         } else if ("Clique aqui se o eleitor já votou!".equals(buttonVaiVotar.getText())){
             novaConsulta();
@@ -260,6 +272,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonBuscar;
     private javax.swing.JButton buttonVaiVotar;
+    private javax.swing.JButton finalizar;
     private javax.swing.JLabel labelEleitor;
     private javax.swing.JLabel labelResultadoFinal;
     private javax.swing.JLabel labelSituacao;

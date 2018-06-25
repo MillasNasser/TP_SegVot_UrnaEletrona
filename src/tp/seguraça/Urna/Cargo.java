@@ -36,7 +36,6 @@ public class Cargo {
 		boolean inserir;
 		inserir = listaCandidato.get(novoCandidato.getNumero()) == (null);
 		if(inserir){
-			System.out.printf("%20s %d %s\n", this.getNome(), novoCandidato.getNumero(), "Jorgim "+this.getNome().substring(0, 4));
 			this.listaCandidato.put(novoCandidato.getNumero(),
 									novoCandidato);
 			BancoDeVotos.addCandidato(novoCandidato);

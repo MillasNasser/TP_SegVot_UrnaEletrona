@@ -15,20 +15,25 @@ import tp.seguraça.Pessoa;
 public class Candidato extends Pessoa{
     private final long Numero;
     private final String Partido;
+	private String cargo;
 	private long Votos;
 
-    public Candidato(String nome, long numero, String Partido) {
+    public Candidato(String nome, long numero, String Partido, String cargo) {
         super(nome);
         this.Numero = numero;
         this.Partido = Partido;
     }
 	
-	private Candidato(String nome, long numero, String Partido, long Votos) {
+	private Candidato(String nome, long numero, String Partido, String cargo, long Votos) {
         super(nome);
         this.Numero = numero;
         this.Partido = Partido;
 		this.Votos = Votos;
     }
+
+	public String getCargo() {
+		return cargo;
+	}
 
     public long getNumero() {
         return Numero;
@@ -62,7 +67,7 @@ public class Candidato extends Pessoa{
 	 */
 	@Override
 	public Candidato clone() throws CloneNotSupportedException{
-        return new Candidato(getNome(), getNumero(), getPartido(), getVoto());
+        return new Candidato(getNome(), getNumero(), getPartido(), getCargo(), getVoto());
     }
 	
 	

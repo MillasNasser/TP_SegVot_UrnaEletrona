@@ -29,14 +29,22 @@ public class Urna {
         cargos = new ArrayList<>();
         banco = BancoDeVotos.getInstance();
 		vvpat = VVPAT.getINSTANCE();
-		NULO = new Candidato("nulo", -2, "");
-		BRANCO = new Candidato("branco", -1, "");
+		NULO = new Candidato("nulo", -2, "", "");
+		BRANCO = new Candidato("branco", -1, "", "");
 		BancoDeVotos.addCandidato(NULO);
 		BancoDeVotos.addCandidato(BRANCO);
     }
 	
 	public static Urna getInstance(){
 		return INSTANCE;
+	}
+	
+	public static ArrayList<String> getCargos(){
+		ArrayList<String> cargosInterface = new ArrayList<>();
+		for(Cargo cargo: cargos){
+			cargosInterface.add(cargo.getNome());
+		}
+		return cargosInterface;
 	}
 	
 	public static void addCargos(Cargo novoCargo){
@@ -63,13 +71,14 @@ public class Urna {
 		return retorno;
 	}
 	
-	public static Candidato __candInterface(Long numero, int index){
-		System.out.println(""+numero);
-		
+	public static Candidato __candInterface(Long numero, int index){		
 		Cargo cargo = cargos.get(index);
 		if(cargo == null){
 			System.exit(-3);
 		}
+		
+		if(numero == -1){return BRANCO;}
+		
 		Candidato candidato = null;
 		try {
 			candidato = cargo.getCandidato(numero);
@@ -77,38 +86,37 @@ public class Urna {
 			System.out.println("Erro ao clonar objeto");
 			Logger.getLogger(Urna.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		if (candidato == null){
-			return NULO;
-		}
+		
+		if (candidato == null){return NULO;}
+		
 		return candidato;
-	
 	}
 	
 	public static void addCandidato(Candidato novoCandidato, Cargo cargo){
 		cargo.adicionaCandidato(novoCandidato);
 	}
 	
-	public static void addVoto(Cargo cargo, long numCandidato) throws VotoInseridoException {
-		for(Cargo nCargo: cargos){
-			if(nCargo.equals(cargo)){
-				Candidato candidato = null;
-				try {
-					candidato = nCargo.getCandidato(numCandidato);
-				} catch (CloneNotSupportedException ex) {
-					System.out.println(ex.getMessage());
-				}
-				
-				/* Se não ouver candidatos o voto é nulo */
-				if (candidato == null){
-					candidato = NULO;
-				}
-				
-				boolean votou = BancoDeVotos.addVoto(candidato);
-				if(!votou){
-					throw new VotoInseridoException("Não foi registrado o voto do eleitor");
-				}
-				return;
-			}
+	public static void addVoto(int index, long numCandidato) throws VotoInseridoException {
+		
+		Candidato candidato = null;
+		Cargo cargo = cargos.get(index);
+		try {
+			candidato = cargo.getCandidato(numCandidato);
+		} catch (CloneNotSupportedException ex) {
+			System.out.println(ex.getMessage());
+		}
+
+		/* Se não ouver candidatos o voto é nulo */
+		if (candidato == null){
+			candidato = NULO;
+		}
+		if (numCandidato == -1){
+			candidato = BRANCO;
+		}
+
+		boolean votou = BancoDeVotos.addVoto(candidato);
+		if(!votou){
+			throw new VotoInseridoException("Não foi registrado o voto do eleitor");
 		}
 	}
 	
@@ -117,7 +125,6 @@ public class Urna {
 		try {
 			c = atual.getCandidato(numCand);
 		} catch (CloneNotSupportedException ex) {
-			System.out.println("Olha a agua mineral");
 			Logger.getLogger(Urna.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		if(c == null){
