@@ -35,9 +35,19 @@ public class TerminalMesario {
 	}
 	
 	public static boolean verificarEleitor(String titulo){
-		Eleitor eleitor = eleitores.get(titulo);
-		return eleitores.get(titulo) != null &&
-				!eleitores.get(titulo).getJaVotou();
+		return verificaExiste(titulo) && !verificaVotou(titulo);
+	}
+	
+	public static boolean verificaExiste(String titulo){
+		return eleitores.get(titulo) != null;
+	}
+	
+	public static boolean verificaVotou(String titulo){
+		return eleitores.get(titulo).getJaVotou();
+	}
+	
+	public static String getNomeEleitor(String titulo) {
+		return eleitores.get(titulo).getNome();
 	}
 	
 	public static boolean votar(String titulo){

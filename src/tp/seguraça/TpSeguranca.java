@@ -59,6 +59,9 @@ public class TpSeguranca {
 			}else 
 			/* É um candidato */
 			if(candidato.length == 3 && cargo != null){
+				if(candidato[1].length() <= 5){
+					cargo.setQntCampos(candidato[1].length());
+				}
 				cargo.adicionaCandidato(
 					new Candidato(
 						candidato[0], 
@@ -79,37 +82,10 @@ public class TpSeguranca {
 		
 		Urna urna = Urna.getInstance();
 		TerminalMesario terminal = TerminalMesario.getInstance();
-		/*String[] cargos = {
-					"DEPUTADO ESTADUAL",
-					"DEPUTADO FERDERAL",
-					"Panelinha",
-					"GOVERNADOR",
-					"PRESIDENTE"};
-		System.out.println("Working Directory = " +
-              System.getProperty("user.dir"));
-		/* Adicionando os cargos e os candidatos de cada 1 */
 		
-		addEleitor(""
-			+ "/mnt/"
-			+ "981C548C1C546772/"
-			+ "Dropbox/"
-			+ "UFSJ/"
-			+ "0_TP's/"
-			+ "2018-1/"
-			+ "SegurancaVotacaoEletronica/"
-			+ "TP_SegVot_UrnaEletrona/"
-			+ "eleitores.txt");
+		addEleitor(args[0]);
 		
-		addCargos(""
-			+ "/mnt/"
-			+ "981C548C1C546772/"
-			+ "Dropbox/"
-			+ "UFSJ/"
-			+ "0_TP's/"
-			+ "2018-1/"
-			+ "SegurancaVotacaoEletronica/"
-			+ "TP_SegVot_UrnaEletrona/"
-			+ "candidatos.txt");
+		addCargos(args[1]);
 		
 		/* Interfaces */
 		InterfaceUrna u = new InterfaceUrna();

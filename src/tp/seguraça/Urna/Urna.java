@@ -59,6 +59,10 @@ public class Urna {
 		return cargos.get(index).getNome();
 	}
 	
+	public static int qntCamposCargo(int index){
+		return cargos.get(index).getQntCampos();
+	}
+	
 	public static String getCandidato(Long numero) throws CloneNotSupportedException{
 		String retorno = "";
 		for(Cargo cargo: cargos){

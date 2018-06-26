@@ -7,7 +7,6 @@ import tp.seguraça.TerminalMesario.TerminalMesario;
 import tp.seguraça.Urna.Urna;
 
 
-
 public class InterfaceMesário extends javax.swing.JFrame {
 	InterfaceUrna urnaAssociada = null;
 	String titulo = "";
@@ -20,7 +19,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 		initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         this.getContentPane().setBackground(new java.awt.Color(235,235,235)); 
-        labelTitulo2.setVisible(false);
+        situacaoEleitor.setVisible(false);
         labelSituacao.setVisible(false);
         labelResultadoFinal.setVisible(false);
         buttonVaiVotar.setVisible(false);
@@ -74,7 +73,8 @@ public class InterfaceMesário extends javax.swing.JFrame {
         String Resultado = situacaoEleitor(titulo);
         labelSituacao.setText(Resultado);
         if(TerminalMesario.verificarEleitor(titulo)){
-            labelResultadoFinal.setText("O eleitor está apto a votar!");
+            labelResultadoFinal.setText(
+				"O eleitor "+TerminalMesario.getNomeEleitor(titulo)+" está apto a votar!");
 			this.titulo = titulo;
             labelResultadoFinal.setForeground(Color.blue);
 			buttonVaiVotar.setVisible(true);
@@ -82,22 +82,20 @@ public class InterfaceMesário extends javax.swing.JFrame {
             labelResultadoFinal.setText("O eleitor não está apto a votar!");
             labelResultadoFinal.setForeground(Color.red);
 			numeroTituloEleitor.setText("");
+			situacaoEleitor.setVisible(true);
         }
-        labelTitulo2.setVisible(true);
         //labelSituacao.setVisible(true);
         labelResultadoFinal.setVisible(true);
     }
     
     void vaiVotar(){
-        labelTitulo2.setVisible(false);
+        situacaoEleitor.setVisible(false);
         labelSituacao.setVisible(false);
         labelResultadoFinal.setVisible(false);
         labelEleitor.setVisible(false);
         numeroTituloEleitor.setVisible(false);
         buttonBuscar.setVisible(false);
 		TerminalMesario.votar(this.titulo);
-        buttonVaiVotar.setText("Clique aqui se o eleitor já votou!");
-		buttonVaiVotar.setVisible(false);
         labelTitulo.setText("Aguardando o eleitor votar...");
     }
     
@@ -110,6 +108,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelEleitor.setVisible(true);
         numeroTituloEleitor.setVisible(true);
         buttonBuscar.setVisible(true);
+		situacaoEleitor.setVisible(true);
         buttonVaiVotar.setVisible(false);
         buttonVaiVotar.setText("Prosseguir eleitor para votação");
         labelTitulo.setText("Terminal Mesário - Consulta eleitoral");
@@ -122,7 +121,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelTitulo = new javax.swing.JLabel();
         labelEleitor = new javax.swing.JLabel();
         buttonBuscar = new javax.swing.JButton();
-        labelTitulo2 = new javax.swing.JLabel();
+        situacaoEleitor = new javax.swing.JLabel();
         labelSituacao = new javax.swing.JLabel();
         labelResultadoFinal = new javax.swing.JLabel();
         buttonVaiVotar = new javax.swing.JButton();
@@ -152,8 +151,8 @@ public class InterfaceMesário extends javax.swing.JFrame {
             }
         });
 
-        labelTitulo2.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
-        labelTitulo2.setText("Situação Eleitor:");
+        situacaoEleitor.setFont(new java.awt.Font("Noto Sans", 1, 14)); // NOI18N
+        situacaoEleitor.setText("Situação Eleitor:");
 
         labelSituacao.setFont(new java.awt.Font("Noto Sans", 0, 14)); // NOI18N
         labelSituacao.setText("Situação Eleitor");
@@ -187,7 +186,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
                 .addContainerGap(78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(labelTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(labelTitulo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(situacaoEleitor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelSituacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(labelResultadoFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonVaiVotar, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,7 +210,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
                     .addComponent(buttonBuscar)
                     .addComponent(numeroTituloEleitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelTitulo2)
+                .addComponent(situacaoEleitor)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelSituacao)
                 .addGap(22, 22, 22)
@@ -228,6 +227,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
         Urna.finalizar();
+		urnaAssociada.telaBase("FINALIZADO");
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
@@ -277,7 +277,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
     private javax.swing.JLabel labelResultadoFinal;
     private javax.swing.JLabel labelSituacao;
     private javax.swing.JLabel labelTitulo;
-    private javax.swing.JLabel labelTitulo2;
     private javax.swing.JTextField numeroTituloEleitor;
+    private javax.swing.JLabel situacaoEleitor;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,11 +46,11 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		numeroCandidato = "";
 		cargos = Urna.getCargos();
 		
-		campos.add(labelNCandidato4);
-		campos.add(labelNCandidato3);
-		campos.add(labelNCandidato2);
-		campos.add(labelNCandidato1);
 		campos.add(labelNCandidato0);
+		campos.add(labelNCandidato1);
+		campos.add(labelNCandidato2);
+		campos.add(labelNCandidato3);
+		campos.add(labelNCandidato4);
 		
 		if(cargos.size() < 1){
 			throw new Exception("Não há cargo para validar");
@@ -73,6 +73,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
         labelCandidato.setText("Candidato");
         labelPartido.setText("Partido");
         labelTitulo.setText("Digite o número para o cargo de "+cargos.get(index));
+		defineMaxNumeros(Urna.qntCamposCargo(index));
     }
     
     // Verifica se o eleitor já digitou todo o número
@@ -97,31 +98,44 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		index = 0;
 	}
 	
+	void defineMaxNumeros(int qnt){
+		for(JLabel numero: campos){
+			numero.setText("");
+			numero.setVisible(false);
+		}
+		for(int i = 0; i < qnt; i++){
+			JLabel numero = campos.get(5 - i - 1);
+			numero.setVisible(true);
+		}
+	}
+	
     // Adiciona o número na tela
     public void adicionaNumero(String numero){
-        if("".equals(labelNCandidato4.getText()) && labelNCandidato4.isVisible()){
+        if(labelNCandidato4.getText().isEmpty() && labelNCandidato4.isVisible()){
 			numeroCandidato = "";
             labelNCandidato4.setText(numero);
 			numeroCandidato = numeroCandidato + numero;
-        }else if("".equals(labelNCandidato3.getText()) && labelNCandidato3.isVisible()){
+        }else if(labelNCandidato3.getText().isEmpty() && labelNCandidato3.isVisible()){
             labelNCandidato3.setText(numero);
 			numeroCandidato = numeroCandidato + numero;
-        }else if("".equals(labelNCandidato2.getText()) && labelNCandidato2.isVisible()){
+        }else if(labelNCandidato2.getText().isEmpty() && labelNCandidato2.isVisible()){
             labelNCandidato2.setText(numero);
 			numeroCandidato = numeroCandidato + numero;
-        }else if("".equals(labelNCandidato1.getText()) && labelNCandidato1.isVisible()){
+        }else if(labelNCandidato1.getText().isEmpty() && labelNCandidato1.isVisible()){
             labelNCandidato1.setText(numero);
 			numeroCandidato = numeroCandidato + numero;
-        }else if("".equals(labelNCandidato0.getText()) && labelNCandidato0.isVisible()){
+        }else if(labelNCandidato0.getText().isEmpty() && labelNCandidato0.isVisible()){
             labelNCandidato0.setText(numero);
 			numeroCandidato = numeroCandidato + numero;
         }
-        verificaFim(numeroCandidato);
+		if(!campos.get(campos.size() - Urna.qntCamposCargo(index)).getText().isEmpty()){
+			verificaFim(numeroCandidato);
+		}
     }
     
     // Vai para o próximo candidato
     public void proximoCandidato(){
-		if(!campos.get(4).getText().isEmpty()){
+		if(!campos.get(campos.size() - Urna.qntCamposCargo(index)).getText().isEmpty()){
 			index++;
 			/* Se chegou ao limite de cargos */
 			if(index == cargos.size()){
@@ -131,6 +145,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
 				mesarioAssociado.setNewConsulta(true);
 				return;
 			}
+			defineMaxNumeros(Urna.qntCamposCargo(index));
 			labelTitulo.setText("Digite o número para o cargo de "+cargos.get(index));
 			//labelNCandidato0.setVisible(false);
 			limpa();

@@ -13,11 +13,20 @@ import java.util.HashMap;
 public class Cargo {
     private final HashMap<Long, Candidato> listaCandidato;
     private final String nome;
+	private int qntCampos = 0;
     
     public Cargo(String nome){
         this.nome = nome;
         listaCandidato = new HashMap<>();
     }
+	
+	public void setQntCampos(int quantidade){
+		this.qntCampos = quantidade;
+	}
+	
+	public int getQntCampos(){
+		return this.qntCampos;
+	}
 	
 	public Candidato getCandidato(Long numeroEleitoral) throws CloneNotSupportedException{
 		Candidato retorno;
