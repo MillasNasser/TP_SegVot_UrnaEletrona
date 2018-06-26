@@ -65,7 +65,7 @@ public class TpSeguranca {
 				cargo.adicionaCandidato(
 					new Candidato(
 						candidato[0], 
-						Long.parseLong(candidato[1]), 
+						candidato[1], 
 						candidato[2], 
 						cargo.getNome()
 					)

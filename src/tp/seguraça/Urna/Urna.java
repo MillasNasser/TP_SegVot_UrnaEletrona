@@ -29,8 +29,8 @@ public class Urna {
         cargos = new ArrayList<>();
         banco = BancoDeVotos.getInstance();
 		vvpat = VVPAT.getINSTANCE();
-		NULO = new Candidato("nulo", -2, "", "");
-		BRANCO = new Candidato("branco", -1, "", "");
+		NULO = new Candidato("nulo", "-2", "", "");
+		BRANCO = new Candidato("branco", "-1", "", "");
 		BancoDeVotos.addCandidato(NULO);
 		BancoDeVotos.addCandidato(BRANCO);
     }
@@ -63,7 +63,7 @@ public class Urna {
 		return cargos.get(index).getQntCampos();
 	}
 	
-	public static String getCandidato(Long numero) throws CloneNotSupportedException{
+	public static String getCandidato(String numero) throws CloneNotSupportedException{
 		String retorno = "";
 		for(Cargo cargo: cargos){
 			Candidato candidato = cargo.getCandidato(numero);
@@ -75,13 +75,13 @@ public class Urna {
 		return retorno;
 	}
 	
-	public static Candidato __candInterface(Long numero, int index){		
+	public static Candidato __candInterface(String numero, int index){		
 		Cargo cargo = cargos.get(index);
 		if(cargo == null){
 			System.exit(-3);
 		}
 		
-		if(numero == -1){return BRANCO;}
+		if(numero.equals("-1")){return BRANCO;}
 		
 		Candidato candidato = null;
 		try {
@@ -100,7 +100,7 @@ public class Urna {
 		cargo.adicionaCandidato(novoCandidato);
 	}
 	
-	public static void addVoto(int index, long numCandidato) throws VotoInseridoException {
+	public static void addVoto(int index, String numCandidato) throws VotoInseridoException {
 		
 		Candidato candidato = null;
 		Cargo cargo = cargos.get(index);
@@ -114,7 +114,7 @@ public class Urna {
 		if (candidato == null){
 			candidato = NULO;
 		}
-		if (numCandidato == -1){
+		if (numCandidato.equals("-1")){
 			candidato = BRANCO;
 		}
 
@@ -124,7 +124,7 @@ public class Urna {
 		}
 	}
 	
-	public static void printVoto(Long numCand, Cargo atual){
+	public static void printVoto(String numCand, Cargo atual){
 		Candidato c = NULO;
 		try {
 			c = atual.getCandidato(numCand);
@@ -132,7 +132,7 @@ public class Urna {
 			Logger.getLogger(Urna.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		if(c == null){
-			if(numCand == -1){
+			if(numCand.equals("-1")){
 				c = BRANCO;
 			}else{
 				c = NULO;

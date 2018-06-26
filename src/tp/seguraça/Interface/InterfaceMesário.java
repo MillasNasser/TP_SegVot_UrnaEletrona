@@ -49,21 +49,13 @@ public class InterfaceMesário extends javax.swing.JFrame {
     
     String situacaoEleitor(String titulo){
         String Resultado;
-        if(tituloValido(titulo)){
+        if(TerminalMesario.verificaExiste(titulo)){
             Resultado = "O título do eleitor é válido";
         } else {
             Resultado = "O título do eleitor é inválido!";
             return Resultado;
         }
-        if(secaoCerta(titulo,"secao")){
-            Resultado += ", o eleitor está na seção certa";
-        } else {
-            Resultado += " porém está em seção errada!";
-            return Resultado;
-        }
-        if(naoVotou(titulo)){
-            Resultado += " e ainda não votou!";
-        } else {
+        if(TerminalMesario.verificaVotou(titulo)){
             Resultado += " porém o eleitor já votou!";
         }
         return Resultado;
@@ -78,11 +70,16 @@ public class InterfaceMesário extends javax.swing.JFrame {
 			this.titulo = titulo;
             labelResultadoFinal.setForeground(Color.blue);
 			buttonVaiVotar.setVisible(true);
+			situacaoEleitor.setVisible(false);
         } else {
             labelResultadoFinal.setText("O eleitor não está apto a votar!");
             labelResultadoFinal.setForeground(Color.red);
 			numeroTituloEleitor.setText("");
 			situacaoEleitor.setVisible(true);
+			situacaoEleitor.setText(
+					"Situação Eleitor:" + 
+					situacaoEleitor(titulo)
+			);
         }
         //labelSituacao.setVisible(true);
         labelResultadoFinal.setVisible(true);
@@ -96,6 +93,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
         numeroTituloEleitor.setVisible(false);
         buttonBuscar.setVisible(false);
 		TerminalMesario.votar(this.titulo);
+		buttonVaiVotar.setVisible(false);
         labelTitulo.setText("Aguardando o eleitor votar...");
     }
     
@@ -108,7 +106,6 @@ public class InterfaceMesário extends javax.swing.JFrame {
         labelEleitor.setVisible(true);
         numeroTituloEleitor.setVisible(true);
         buttonBuscar.setVisible(true);
-		situacaoEleitor.setVisible(true);
         buttonVaiVotar.setVisible(false);
         buttonVaiVotar.setText("Prosseguir eleitor para votação");
         labelTitulo.setText("Terminal Mesário - Consulta eleitoral");

@@ -13,18 +13,18 @@ import tp.seguraça.Pessoa;
  * @author rafael
  */
 public class Candidato extends Pessoa{
-    private final long Numero;
+    private final String Numero;
     private final String Partido;
 	private String cargo;
 	private long Votos;
 
-    public Candidato(String nome, long numero, String Partido, String cargo) {
+    public Candidato(String nome, String numero, String Partido, String cargo) {
         super(nome);
         this.Numero = numero;
         this.Partido = Partido;
     }
 	
-	private Candidato(String nome, long numero, String Partido, String cargo, long Votos) {
+	private Candidato(String nome, String numero, String Partido, String cargo, long Votos) {
         super(nome);
         this.Numero = numero;
         this.Partido = Partido;
@@ -35,7 +35,7 @@ public class Candidato extends Pessoa{
 		return cargo;
 	}
 
-    public long getNumero() {
+    public String getNumero() {
         return Numero;
     }
 
@@ -84,10 +84,8 @@ public class Candidato extends Pessoa{
 
 	@Override
 	public int hashCode() {
-		int hash = 3;
-		hash = 47 * hash + (int) (this.Numero ^ (this.Numero >>> 32));
-		hash = 47 * hash + Objects.hashCode(this.Partido);
-		hash = 47 * hash + (int) (this.Votos ^ (this.Votos >>> 32));
+		int hash = 7;
+		hash = 71 * hash + Objects.hashCode(this.Numero);
 		return hash;
 	}
 }

@@ -78,7 +78,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
     
     // Verifica se o eleitor já digitou todo o número
     public void verificaFim(String numero){
-		Candidato candidato = Urna.__candInterface(Long.parseLong(numero),index);
+		Candidato candidato = Urna.__candInterface(numero,index);
 		labelCandidato.setText(candidato.getNome()); 
 		labelPartido.setText(candidato.getPartido());
     }
@@ -168,7 +168,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
     public void confirma(){
         // SALVAR VOTO URNA
 		try {
-			Urna.addVoto(index, Integer.parseInt(numeroCandidato));
+			Urna.addVoto(index, numeroCandidato);
 		} catch (VotoInseridoException ex) {
 			Logger.getLogger(InterfaceUrna.class.getName()).log(Level.SEVERE, null, ex);
 		}

@@ -11,7 +11,7 @@ import java.util.HashMap;
  * @author rafael
  */
 public class Cargo {
-    private final HashMap<Long, Candidato> listaCandidato;
+    private final HashMap<String, Candidato> listaCandidato;
     private final String nome;
 	private int qntCampos = 0;
     
@@ -28,7 +28,7 @@ public class Cargo {
 		return this.qntCampos;
 	}
 	
-	public Candidato getCandidato(Long numeroEleitoral) throws CloneNotSupportedException{
+	public Candidato getCandidato(String numeroEleitoral) throws CloneNotSupportedException{
 		Candidato retorno;
 		retorno = listaCandidato.getOrDefault(numeroEleitoral,null);
 		if(retorno != null){
