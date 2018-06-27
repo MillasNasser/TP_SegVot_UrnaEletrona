@@ -3,6 +3,7 @@ package tp.seguraça.Interface;
 
 import java.awt.Color;
 import java.awt.Toolkit;
+import javax.swing.JOptionPane;
 import tp.seguraça.TerminalMesario.TerminalMesario;
 import tp.seguraça.Urna.Urna;
 
@@ -223,8 +224,14 @@ public class InterfaceMesário extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void finalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finalizarActionPerformed
-        Urna.finalizar();
-		urnaAssociada.telaBase("FINALIZADO");
+		int pergunta = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja finalizar a votação?");
+		if(pergunta == 0){
+			Urna.finalizar();
+			numeroTituloEleitor.setVisible(false);
+			labelEleitor.setVisible(false);
+			buttonBuscar.setVisible(false);
+			urnaAssociada.telaBase("FINALIZADO");
+		}
     }//GEN-LAST:event_finalizarActionPerformed
 
     private void buttonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBuscarActionPerformed
@@ -245,7 +252,7 @@ public class InterfaceMesário extends javax.swing.JFrame {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -63,15 +63,20 @@ public class Urna {
 		return cargos.get(index).getQntCampos();
 	}
 	
-	public static String getCandidato(String numero) throws CloneNotSupportedException{
-		String retorno = "";
-		for(Cargo cargo: cargos){
-			Candidato candidato = cargo.getCandidato(numero);
-			if (candidato == null){
-				continue;
-			}
-			retorno = candidato.toString();
+	public static String getCandidato(String numero, int index) throws CloneNotSupportedException{
+		String retorno;
+		
+		Cargo cargo = cargos.get(index);
+		
+		Candidato candidato = cargo.getCandidato(numero);
+		if (candidato == null){
+			candidato = NULO;
 		}
+		if (numero.equals("-1")){
+			candidato = BRANCO;
+		}
+		retorno = candidato.toString();
+
 		return retorno;
 	}
 	

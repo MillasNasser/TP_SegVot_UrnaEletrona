@@ -5,6 +5,7 @@
  */
 package tp.seguraça.Interface;
 
+import javax.swing.JFrame;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -12,12 +13,17 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author millas
  */
 public class InterfaceVVPAT extends javax.swing.JFrame {
-
+	JFrame tela;
 	/**
 	 * Creates new form InterfaceVVPAT
 	 */
 	public InterfaceVVPAT() {
 		initComponents();
+	}
+	
+	public InterfaceVVPAT(InterfaceUrna urna){
+		initComponents();
+		tela = urna;
 	}
 
 	/**
@@ -46,6 +52,7 @@ public class InterfaceVVPAT extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
@@ -188,10 +195,13 @@ public class InterfaceVVPAT extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ConfirmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConfirmaActionPerformed
-        // TODO add your handling code here:
+		this.setVisible(false);
+		tela.setEnabled(true);
+		tela.setFocusable(true);
     }//GEN-LAST:event_ConfirmaActionPerformed
 
 	/**

@@ -1,9 +1,9 @@
 package tp.seguraça.Urna;
 
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import tp.seguraça.Criptografia;
 
 /**
  * Singleton
@@ -51,34 +51,25 @@ public final class BancoDeVotos{
 	}
 	
 	public static void finalizar(){
-		final String hash, boletim;
-		
-		hash = generateHash(geraBoletim());
-		boletim = geraBoletim();
-		System.out.println(hash);
-		System.out.println(boletim);
-	}
-	
-	/* Procedimentos de finalização */
-	private static String generateHash(String boletim){		
-		MessageDigest digest = null;
-		try {
-			digest = MessageDigest.getInstance("SHA-512");
-		} catch (NoSuchAlgorithmException ex) {
-			System.out.println(ex.getMessage());
-		}
-		byte[] hashCode;
-		hashCode = digest.digest(boletim.getBytes(StandardCharsets.UTF_8));
-		
-		StringBuilder hexString = new StringBuilder();
+		FileOutputStream fos;
 
-        for (int i = 0; i < hashCode.length; i++) {
-            String hex = Integer.toHexString(0xff & hashCode[i]);
-            if(hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-		
-		return hexString.toString();
+		final String hash, boletim;
+		hash = Criptografia.generateHash(geraBoletim());
+		boletim = geraBoletim();
+		try{
+			fos = new FileOutputStream("Boletim.voto");
+			fos.write((hash+"\n"+boletim).getBytes());
+			fos.close();
+		}catch(IOException e){}
+		try{
+			fos = new FileOutputStream("Boletim.voto.hash");
+			fos.write(
+				Criptografia.encrypt(
+					Criptografia.generateHash(hash+"\n"+boletim)
+				)
+			);
+			fos.close();
+		}catch(Exception e){}
 	}
 }
 

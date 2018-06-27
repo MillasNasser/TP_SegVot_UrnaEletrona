@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import tp.seguraça.Urna.Candidato;
 import tp.seguraça.Urna.Urna;
 
@@ -22,6 +23,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
 	private ArrayList<JLabel> campos = new ArrayList<>();
 	private int index;
 	InterfaceMesário mesarioAssociado = null;
+	InterfaceVVPAT VVPAT;
 	
     public InterfaceUrna() {        
 		//telaBase("Ø");
@@ -52,12 +54,16 @@ public class InterfaceUrna extends javax.swing.JFrame {
 		campos.add(labelNCandidato3);
 		campos.add(labelNCandidato4);
 		
+		VVPAT = new InterfaceVVPAT(this);
+		VVPAT.setVisible(false);
+		
 		if(cargos.size() < 1){
 			throw new Exception("Não há cargo para validar");
 		}
 		index = 0;
 		telaBase("Ø");
 	}
+    
     
 	public void inicio(){
 		telaInicio("Digite o número do seu candidato!");
@@ -134,7 +140,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
     }
     
     // Vai para o próximo candidato
-    public void proximoCandidato(){
+    public boolean proximoCandidato(){
 		if(!campos.get(campos.size() - Urna.qntCamposCargo(index)).getText().isEmpty()){
 			index++;
 			/* Se chegou ao limite de cargos */
@@ -143,13 +149,15 @@ public class InterfaceUrna extends javax.swing.JFrame {
 				resetaUrna();
 				telaBase("FIM");
 				mesarioAssociado.setNewConsulta(true);
-				return;
+				return false;
 			}
 			defineMaxNumeros(Urna.qntCamposCargo(index));
 			labelTitulo.setText("Digite o número para o cargo de "+cargos.get(index));
 			//labelNCandidato0.setVisible(false);
 			limpa();
+			return true;
 		}
+		return false;
     }
     
 	public void telaBase(String nome){
@@ -166,13 +174,27 @@ public class InterfaceUrna extends javax.swing.JFrame {
 	
     // Ação confirma
     public void confirma(){
-        // SALVAR VOTO URNA
+        // SALVAR VOTO URNA7
 		try {
-			Urna.addVoto(index, numeroCandidato);
-		} catch (VotoInseridoException ex) {
+			if(numeroCandidato.equals("-1") || numeroCandidato.equals("-2") || 
+				Urna.qntCamposCargo(index) == numeroCandidato.length()
+			){
+				int valor = JOptionPane.showConfirmDialog(this, 
+								Urna.getCandidato(numeroCandidato, index),
+								"VVPAT", 
+								JOptionPane.YES_NO_OPTION
+				);
+
+				if(valor == 0){
+					boolean avancou = proximoCandidato();
+					if(avancou) {
+						Urna.addVoto(index, numeroCandidato);
+					}
+				}
+			}
+		} catch (VotoInseridoException | CloneNotSupportedException ex) {
 			Logger.getLogger(InterfaceUrna.class.getName()).log(Level.SEVERE, null, ex);
 		}
-        proximoCandidato();
     }
     
     // Limpa campos tela
@@ -219,6 +241,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
         labelNCandidato3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Urna Eletrônica");
         setMinimumSize(new java.awt.Dimension(70, 70));
         setUndecorated(true);
         setResizable(false);
@@ -585,6 +608,7 @@ public class InterfaceUrna extends javax.swing.JFrame {
 
     private void buttonCorrigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCorrigeActionPerformed
         limpa();
+		numeroCandidato = "";
     }//GEN-LAST:event_buttonCorrigeActionPerformed
 
     private void buttonN9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonN9ActionPerformed

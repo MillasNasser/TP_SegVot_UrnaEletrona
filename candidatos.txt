@@ -1,47 +1,73 @@
 Presidente:
-Ciro Gomes,30,PDT
-Geraldo Alckmin,45,PSDB
-Jair Bolsonaro,20,PSL
-Luiz Inácio Lula da Silva,13,PT
-Marina Silva,40,Rede
+Lula, 13, PT
+Jair Bolsonaro, 17, PSC
+Geraldo Alckmin, 45, PSDB
+Marina Silva, 40, Rede
+Ciro Gomes, 20, PDT
+Álvaro Dias, 19, Podemos
+Fernando Collor de Mello, 21, PTC
+Henrique Meirelles, 22, MDB
+João Goulart Filho, 23, PPL
+Rodrigo Maia, 24, DEM
+Aldo Rebelo, 25, SD
+Flávio Rocha, 26, PRB
+Guilherme Boulos, 27, PSOL
+João Amoêdo, 30, Novo
+Levy Fidelix, 31, PRTB17
+Manuela D'Ávila, 32, PCdoB
+Paulo Rabelo de Castro, 33, PSC
 
-Senador:
-Laila Medeiros,389,PSDB
-Cloe Guimarães,678,PSDB
-Rafaela Mauricio,594,PSDB
-Diana Vitor,318,PSL
-Santos Moraes,110,PT
-Diogo Santos,711,PT
-Fábio Freitas,892,PDT
+Professores:
+Alexandre Bittencourt Pigozzo, 11, --
+Carolina Ribeiro Xavier, 12, --
+Charles Figueredo de Barros,13, --
+Daniel Ludovico Guidoni, 14, --
+Daniel Luiz Alves Madeira, 15, --
+Dárlinton Barbosa Feres Carvalho, 16, --
+Diego Roberto Colombo Dias, 17, --
+Edimilson Batista dos Santos, 18, --
+Elder José Reioli Cirilo, 19, --
+Elisa Tuler de Albergaria, 20, --
+Elverton Carvalho Fazzion, 21, --
+Fernanda Sumika Hojo de Souza, 22, --
+Flávio Luiz Schiavoni, 23, --
+Leonardo Chaves Dutra da Rocha, 24, --
+Marcos Antonio de Matos Laia, 25, --
+Matheus Carvalho Viana, 26, --
+Michelli Marlane Silva Loureiro, 27, --
+Milene Barbosa Carvalho, 28, --
+Rafael Sachetto Oliveira, 29, --
+Sofia Larissa da Costa, 30, --
+Vinícius da Fonseca Vieira, 31, --
+Vinícius Humberto Serapilha Durelli, 32, --
 
-Deputado Federal:
-Rebeca Amaral,1439,PSDB
-Giovana Frias,1244,PSDB
-Juliano Souza,1716,PSDB
-Agnes Menezes,1335,PSL
-Ezequiel Vitor,1877,PT
-Maria Lessa,1192,PT
-Davi Lucca Menezzes,1498,PT
-Gustavo Xavier,1506,PDT
-Calebe Leão,1970,PDT
-Yuri Rodrigues,1386,PSL
+Seleção:
+Uruguai, 11, --
+Rússia , 12, --
+Espanha, 13, --
+Portugal, 14, --
+França, 15, --
+Dinamarca, 16, --
+Croácia, 17, --
+Argentina, 18, --
+Brasil, 19, --
+Suíça, 20, --
+México, 21, --
+Alemanha, 22, --
+Colômbia, 23, --
+Senegal, 24, --
+Bélgica, 25, --
+Inglaterra, 26, --
 
-Deputado Estadual:
-Marcos Maximus,34512,PDT
-Bárbara Frota,12383,PDT
-Miguel Freitas,10225,PSL
-André Carvalho,12176,PSL
-Bryan Moraes,10661,PSDB
-Olívia Maximus,14252,PSDB
-Helena Barreto,37521,PSDB
-Anabela Boaventura,12114,PT
-Vicente Suarez,49999,PT
-Caio Gonçalves,71912,PT
-Maria Araújo,11644,Rede
-
-Gorvernador:
-Vinicius Junqueira,90,PSDB
-Giovanna Oliveira,19,PSL
-Douglas Marques,84,PDT
-Isabel Guimarães,58,Rede
-Nicole Amaral,13,PT
+Linguagem:
+Java, 11, --
+C, 12, --
+C++, 13, --
+C#, 14, --
+Python, 15, --
+JavaScript, 16, --
+Assembly, 17, --
+Ruby, 18, --
+Go, 19, --
+Swift, 20, --
+VISUAL BASIC, 21, --
